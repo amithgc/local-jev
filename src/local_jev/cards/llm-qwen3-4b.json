@@ -1,0 +1,70 @@
+{
+  "name": "llm-qwen3-4b",
+  "backend": "llm",
+  "priority": 80,
+  "description": "Qwen3-4B-Instruct-2507 read at the answer token. Zero-shot, no fine-tuning by this project. About 8 GB in half precision.",
+  "release_date": "2025-08-06",
+  "license": "Apache-2.0 (Qwen/Qwen3-4B-Instruct-2507)",
+  "hf_model": "Qwen/Qwen3-4B-Instruct-2507",
+  "context_tokens": 32768,
+  "batch_size": 4,
+  "calibration": {
+    "temperature": {
+      "choice": 5.889,
+      "score": 1.0,
+      "noul": 11.443
+    },
+    "fit": {
+      "choice": {
+        "n": 511,
+        "nll_before": 3.3842,
+        "nll_after": 0.825
+      },
+      "score": {
+        "n": 600,
+        "objective": "level_error",
+        "before": 0.4649,
+        "after": 0.4617,
+        "floored_at_1": true
+      },
+      "noul": {
+        "n": 784,
+        "nll_before": 2.8213,
+        "nll_after": 0.4803
+      }
+    },
+    "note": "Fitted with training/calibrate.py on held-back rows of data/calib.jsonl (public gold-labelled tasks): choice and yes/no minimise negative log-likelihood, score minimises the error of the expected level."
+  },
+  "evaluation": {
+    "benchmark": "JevBench public",
+    "items": 231,
+    "accuracy": 0.7013,
+    "by_tier": {
+      "easy": 1.0,
+      "standard": 0.8194,
+      "hard": 0.4955
+    },
+    "p50_ms": 177,
+    "p95_ms": 2210,
+    "failed": 0,
+    "hardware": "Apple M4 Max",
+    "measured": "2026-09-21",
+    "reference": {
+      "jev-1.13.0": 0.866
+    }
+  },
+  "size": {
+    "params": "4B",
+    "download_gb": 8.04,
+    "memory_gb": 8.0
+  },
+  "summary": "The best balance of speed and accuracy: 70% at about 0.18 s per request.",
+  "use_when": [
+    "You want interactive speed with solid accuracy.",
+    "Most everyday triage: tickets, emails, comments, intents."
+  ],
+  "avoid_when": [
+    "The hardest reasoning questions: it trails Qwen3.5-4B by 10 points, mostly on the hard tier.",
+    "Memory is tight: it needs about 8 GB."
+  ]
+}

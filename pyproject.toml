@@ -1,0 +1,36 @@
+[project]
+name = "local-jev"
+version = "0.2.0"
+description = "A local, Jev-compatible System One server built on small open models."
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.4",
+    "transformers>=4.51",
+    "huggingface_hub",
+    "sentencepiece",
+    "protobuf",
+    "accelerate",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "pydantic>=2.6",
+    "numpy",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "httpx", "typesafe-sdk", "datasets", "scikit-learn"]
+
+[project.scripts]
+local-jev = "local_jev.cli:main"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"local_jev" = ["ui/*", "cards/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

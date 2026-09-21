@@ -1,0 +1,1562 @@
+[
+ {
+  "domain": "Support tickets",
+  "state": "I was charged twice for my March subscription. Can you look into it?",
+  "question": {
+   "type": "choice",
+   "instructions": "Which team should handle this support ticket?",
+   "criteria": {
+    "billing": "Charges, invoices, refunds and subscriptions",
+    "technical": "Bugs, errors, outages and integrations",
+    "sales": "Pricing, plans and buying questions from prospects",
+    "account": "Login, passwords, permissions and profile settings"
+   }
+  },
+  "gold": "billing",
+  "id": "c001"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "The export button throws a 500 error every time I click it since yesterday's update.",
+  "question": {
+   "type": "choice",
+   "instructions": "Which team should handle this support ticket?",
+   "criteria": {
+    "billing": "Charges, invoices, refunds and subscriptions",
+    "technical": "Bugs, errors, outages and integrations",
+    "sales": "Pricing, plans and buying questions from prospects",
+    "account": "Login, passwords, permissions and profile settings"
+   }
+  },
+  "gold": "technical",
+  "id": "c002"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "We're a team of 40 evaluating your product. Do you offer volume discounts on the annual plan?",
+  "question": {
+   "type": "choice",
+   "instructions": "Which team should handle this support ticket?",
+   "criteria": {
+    "billing": "Charges, invoices, refunds and subscriptions",
+    "technical": "Bugs, errors, outages and integrations",
+    "sales": "Pricing, plans and buying questions from prospects",
+    "account": "Login, passwords, permissions and profile settings"
+   }
+  },
+  "gold": "sales",
+  "id": "c003"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "I can't log in. The password reset email never arrives, I've checked spam too.",
+  "question": {
+   "type": "choice",
+   "instructions": "Which team should handle this support ticket?",
+   "criteria": {
+    "billing": "Charges, invoices, refunds and subscriptions",
+    "technical": "Bugs, errors, outages and integrations",
+    "sales": "Pricing, plans and buying questions from prospects",
+    "account": "Login, passwords, permissions and profile settings"
+   }
+  },
+  "gold": "account",
+  "id": "c004"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "Your Zapier integration stopped syncing new contacts two days ago.",
+  "question": {
+   "type": "choice",
+   "instructions": "Which team should handle this support ticket?",
+   "criteria": {
+    "billing": "Charges, invoices, refunds and subscriptions",
+    "technical": "Bugs, errors, outages and integrations",
+    "sales": "Pricing, plans and buying questions from prospects",
+    "account": "Login, passwords, permissions and profile settings"
+   }
+  },
+  "gold": "technical",
+  "id": "c005"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "Please send me a VAT invoice for order 88213, our accountant needs it.",
+  "question": {
+   "type": "choice",
+   "instructions": "Which team should handle this support ticket?",
+   "criteria": {
+    "billing": "Charges, invoices, refunds and subscriptions",
+    "technical": "Bugs, errors, outages and integrations",
+    "sales": "Pricing, plans and buying questions from prospects",
+    "account": "Login, passwords, permissions and profile settings"
+   }
+  },
+  "gold": "billing",
+  "id": "c006"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "How do I add a colleague as an admin on our workspace?",
+  "question": {
+   "type": "choice",
+   "instructions": "Which team should handle this support ticket?",
+   "criteria": {
+    "billing": "Charges, invoices, refunds and subscriptions",
+    "technical": "Bugs, errors, outages and integrations",
+    "sales": "Pricing, plans and buying questions from prospects",
+    "account": "Login, passwords, permissions and profile settings"
+   }
+  },
+  "gold": "account",
+  "id": "c007"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "What's the difference between the Pro and Business plans? Thinking of upgrading from the free trial.",
+  "question": {
+   "type": "choice",
+   "instructions": "Which team should handle this support ticket?",
+   "criteria": {
+    "billing": "Charges, invoices, refunds and subscriptions",
+    "technical": "Bugs, errors, outages and integrations",
+    "sales": "Pricing, plans and buying questions from prospects",
+    "account": "Login, passwords, permissions and profile settings"
+   }
+  },
+  "gold": "sales",
+  "id": "c008"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "I cancelled within the trial period but was still charged $49. Please refund it.",
+  "question": {
+   "type": "noul",
+   "instructions": "The customer is asking for their money back.",
+   "criteria": {
+    "true": "Explicitly requests a refund, a reversal of a charge or a credit",
+    "false": "Mentions a charge without asking for money back, or asks something else"
+   }
+  },
+  "gold": true,
+  "id": "c009"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "This is not what I expected at all. I want my money back.",
+  "question": {
+   "type": "noul",
+   "instructions": "The customer is asking for their money back.",
+   "criteria": {
+    "true": "Explicitly requests a refund, a reversal of a charge or a credit",
+    "false": "Mentions a charge without asking for money back, or asks something else"
+   }
+  },
+  "gold": true,
+  "id": "c010"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "Could you reverse last month's charge? I never used the account.",
+  "question": {
+   "type": "noul",
+   "instructions": "The customer is asking for their money back.",
+   "criteria": {
+    "true": "Explicitly requests a refund, a reversal of a charge or a credit",
+    "false": "Mentions a charge without asking for money back, or asks something else"
+   }
+  },
+  "gold": true,
+  "id": "c011"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "I see a $12 charge on my statement. What is it for?",
+  "question": {
+   "type": "noul",
+   "instructions": "The customer is asking for their money back.",
+   "criteria": {
+    "true": "Explicitly requests a refund, a reversal of a charge or a credit",
+    "false": "Mentions a charge without asking for money back, or asks something else"
+   }
+  },
+  "gold": false,
+  "id": "c012"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "Can I switch from monthly to annual billing?",
+  "question": {
+   "type": "noul",
+   "instructions": "The customer is asking for their money back.",
+   "criteria": {
+    "true": "Explicitly requests a refund, a reversal of a charge or a credit",
+    "false": "Mentions a charge without asking for money back, or asks something else"
+   }
+  },
+  "gold": false,
+  "id": "c013"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "The app keeps crashing when I upload photos.",
+  "question": {
+   "type": "noul",
+   "instructions": "The customer is asking for their money back.",
+   "criteria": {
+    "true": "Explicitly requests a refund, a reversal of a charge or a credit",
+    "false": "Mentions a charge without asking for money back, or asks something else"
+   }
+  },
+  "gold": false,
+  "id": "c014"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "Hi, my invoice shows the wrong company name. Could you update it to Northwind Ltd? Thanks.",
+  "question": {
+   "type": "score",
+   "instructions": "How frustrated is the customer?",
+   "criteria": [
+    "Calm and matter-of-fact",
+    "Annoyed but polite",
+    "Angry, using strong language or threats to leave"
+   ]
+  },
+  "gold": 0,
+  "id": "c015"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "Just checking whether the CSV import supports semicolon delimiters.",
+  "question": {
+   "type": "score",
+   "instructions": "How frustrated is the customer?",
+   "criteria": [
+    "Calm and matter-of-fact",
+    "Annoyed but polite",
+    "Angry, using strong language or threats to leave"
+   ]
+  },
+  "gold": 0,
+  "id": "c016"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "This is the second time I'm writing about this. It's getting a bit tiresome, but I'd appreciate an update.",
+  "question": {
+   "type": "score",
+   "instructions": "How frustrated is the customer?",
+   "criteria": [
+    "Calm and matter-of-fact",
+    "Annoyed but polite",
+    "Angry, using strong language or threats to leave"
+   ]
+  },
+  "gold": 1,
+  "id": "c017"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "I've been waiting four days for a reply, which is not great. Please can someone get back to me.",
+  "question": {
+   "type": "score",
+   "instructions": "How frustrated is the customer?",
+   "criteria": [
+    "Calm and matter-of-fact",
+    "Annoyed but polite",
+    "Angry, using strong language or threats to leave"
+   ]
+  },
+  "gold": 1,
+  "id": "c018"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "This is absolutely ridiculous. Your product has cost us a whole day of work. Fix it NOW or we're cancelling.",
+  "question": {
+   "type": "score",
+   "instructions": "How frustrated is the customer?",
+   "criteria": [
+    "Calm and matter-of-fact",
+    "Annoyed but polite",
+    "Angry, using strong language or threats to leave"
+   ]
+  },
+  "gold": 2,
+  "id": "c019"
+ },
+ {
+  "domain": "Support tickets",
+  "state": "Are you people even reading these tickets?! Third outage this week. Utterly useless. I'm done with you.",
+  "question": {
+   "type": "score",
+   "instructions": "How frustrated is the customer?",
+   "criteria": [
+    "Calm and matter-of-fact",
+    "Annoyed but polite",
+    "Angry, using strong language or threats to leave"
+   ]
+  },
+  "gold": 2,
+  "id": "c020"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "from": "Lucy Hart <lucy@hartdesign.example.com>",
+   "subject": "Logo concepts",
+   "body": "Hi, I've attached three logo directions. Which one should I develop further? I'd like to start on Monday."
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "Does this email need a personal reply from the recipient?",
+   "criteria": {
+    "true": "A real person asks a direct question or is waiting on a decision",
+    "false": "Automated mail, newsletters, receipts and FYI messages"
+   }
+  },
+  "gold": true,
+  "id": "c021"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "from": "Omar <omar@fieldnotes.example.com>",
+   "subject": "Quick question on the contract",
+   "body": "Are you happy with the 30-day payment terms, or do you want me to push for 14?"
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "Does this email need a personal reply from the recipient?",
+   "criteria": {
+    "true": "A real person asks a direct question or is waiting on a decision",
+    "false": "Automated mail, newsletters, receipts and FYI messages"
+   }
+  },
+  "gold": true,
+  "id": "c022"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "from": "Trainline <no-reply@trainline.com>",
+   "subject": "Your e-ticket to Manchester",
+   "body": "Your booking is confirmed. Show this barcode at the gate. Coach C, seat 42."
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "Does this email need a personal reply from the recipient?",
+   "criteria": {
+    "true": "A real person asks a direct question or is waiting on a decision",
+    "false": "Automated mail, newsletters, receipts and FYI messages"
+   }
+  },
+  "gold": false,
+  "id": "c023"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "from": "Medium Daily Digest <noreply@medium.com>",
+   "subject": "Stories for you",
+   "body": "Top stories in Programming and Design, picked for you today."
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "Does this email need a personal reply from the recipient?",
+   "criteria": {
+    "true": "A real person asks a direct question or is waiting on a decision",
+    "false": "Automated mail, newsletters, receipts and FYI messages"
+   }
+  },
+  "gold": false,
+  "id": "c024"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "from": "HR <hr@acme.dev>",
+   "subject": "Office closed on Monday",
+   "body": "A reminder that the office is closed this Monday for the bank holiday. No action needed."
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "Does this email need a personal reply from the recipient?",
+   "criteria": {
+    "true": "A real person asks a direct question or is waiting on a decision",
+    "false": "Automated mail, newsletters, receipts and FYI messages"
+   }
+  },
+  "gold": false,
+  "id": "c025"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "from": "Octopus Energy <hello@octopus.energy>",
+   "subject": "Your bill for April",
+   "body": "Your electricity bill for April is £64.12 and will be taken by Direct Debit on the 9th."
+  },
+  "question": {
+   "type": "choice",
+   "instructions": "What kind of email is this?",
+   "criteria": {
+    "receipt": "Documents a payment, invoice or charge",
+    "newsletter": "A periodic digest or marketing mailing",
+    "security": "Sign-in alerts, password changes and account warnings",
+    "personal": "From a friend or family member",
+    "work": "From a colleague about ongoing work"
+   }
+  },
+  "gold": "receipt",
+  "id": "c026"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "from": "Deliveroo <no-reply@deliveroo.co.uk>",
+   "subject": "Your order receipt",
+   "body": "Thanks for ordering from Dishoom. Total paid: £31.40."
+  },
+  "question": {
+   "type": "choice",
+   "instructions": "What kind of email is this?",
+   "criteria": {
+    "receipt": "Documents a payment, invoice or charge",
+    "newsletter": "A periodic digest or marketing mailing",
+    "security": "Sign-in alerts, password changes and account warnings",
+    "personal": "From a friend or family member",
+    "work": "From a colleague about ongoing work"
+   }
+  },
+  "gold": "receipt",
+  "id": "c027"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "from": "The Browser <editor@thebrowser.com>",
+   "subject": "Five links worth your time",
+   "body": "This week's selection of the best writing on the web."
+  },
+  "question": {
+   "type": "choice",
+   "instructions": "What kind of email is this?",
+   "criteria": {
+    "receipt": "Documents a payment, invoice or charge",
+    "newsletter": "A periodic digest or marketing mailing",
+    "security": "Sign-in alerts, password changes and account warnings",
+    "personal": "From a friend or family member",
+    "work": "From a colleague about ongoing work"
+   }
+  },
+  "gold": "newsletter",
+  "id": "c028"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "from": "Instagram <security@mail.instagram.com>",
+   "subject": "New login from Chrome on Windows",
+   "body": "We noticed a login from a device you don't usually use. If this wasn't you, secure your account."
+  },
+  "question": {
+   "type": "choice",
+   "instructions": "What kind of email is this?",
+   "criteria": {
+    "receipt": "Documents a payment, invoice or charge",
+    "newsletter": "A periodic digest or marketing mailing",
+    "security": "Sign-in alerts, password changes and account warnings",
+    "personal": "From a friend or family member",
+    "work": "From a colleague about ongoing work"
+   }
+  },
+  "gold": "security",
+  "id": "c029"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "from": "Grandad",
+   "subject": "Allotment",
+   "body": "The tomatoes are coming on lovely. Come round Sunday and I'll give you a bag. Bring the little ones."
+  },
+  "question": {
+   "type": "choice",
+   "instructions": "What kind of email is this?",
+   "criteria": {
+    "receipt": "Documents a payment, invoice or charge",
+    "newsletter": "A periodic digest or marketing mailing",
+    "security": "Sign-in alerts, password changes and account warnings",
+    "personal": "From a friend or family member",
+    "work": "From a colleague about ongoing work"
+   }
+  },
+  "gold": "personal",
+  "id": "c030"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "from": "Femi <femi@acme.example.com>",
+   "subject": "PR #412 ready for review",
+   "body": "I've addressed your comments on the caching layer. Could you take another look before standup?"
+  },
+  "question": {
+   "type": "choice",
+   "instructions": "What kind of email is this?",
+   "criteria": {
+    "receipt": "Documents a payment, invoice or charge",
+    "newsletter": "A periodic digest or marketing mailing",
+    "security": "Sign-in alerts, password changes and account warnings",
+    "personal": "From a friend or family member",
+    "work": "From a colleague about ongoing work"
+   }
+  },
+  "gold": "work",
+  "id": "c031"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "subject": "Your weekly screen time report",
+   "body": "Your screen time was down 8% last week."
+  },
+  "question": {
+   "type": "score",
+   "instructions": "How urgently does this email need attention?",
+   "criteria": [
+    "Can wait or needs nothing",
+    "Should be dealt with this week",
+    "Needs attention today"
+   ]
+  },
+  "gold": 0,
+  "id": "c032"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "subject": "New features in your notes app",
+   "body": "We've added tables and a faster search. Update any time."
+  },
+  "question": {
+   "type": "score",
+   "instructions": "How urgently does this email need attention?",
+   "criteria": [
+    "Can wait or needs nothing",
+    "Should be dealt with this week",
+    "Needs attention today"
+   ]
+  },
+  "gold": 0,
+  "id": "c033"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "subject": "Expense report due Friday",
+   "body": "Please submit March expenses by end of day Friday so they make this pay run."
+  },
+  "question": {
+   "type": "score",
+   "instructions": "How urgently does this email need attention?",
+   "criteria": [
+    "Can wait or needs nothing",
+    "Should be dealt with this week",
+    "Needs attention today"
+   ]
+  },
+  "gold": 1,
+  "id": "c034"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "subject": "Production database is down",
+   "body": "The primary is unreachable and customers are seeing errors. We need you on the incident call right now."
+  },
+  "question": {
+   "type": "score",
+   "instructions": "How urgently does this email need attention?",
+   "criteria": [
+    "Can wait or needs nothing",
+    "Should be dealt with this week",
+    "Needs attention today"
+   ]
+  },
+  "gold": 2,
+  "id": "c035"
+ },
+ {
+  "domain": "Email",
+  "state": {
+   "subject": "Your flight departs in 3 hours",
+   "body": "Online check-in closes in 60 minutes. Check in now to avoid airport fees."
+  },
+  "question": {
+   "type": "score",
+   "instructions": "How urgently does this email need attention?",
+   "criteria": [
+    "Can wait or needs nothing",
+    "Should be dealt with this week",
+    "Needs attention today"
+   ]
+  },
+  "gold": 2,
+  "id": "c036"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "Complete waste of money. It stopped working after two days and the seller ignored me. Avoid.",
+  "question": {
+   "type": "score",
+   "instructions": "How satisfied is the reviewer with the product?",
+   "criteria": [
+    "Very dissatisfied: regrets buying it",
+    "Dissatisfied: more bad than good",
+    "Mixed or neutral",
+    "Satisfied: minor complaints at most",
+    "Delighted: recommends it without reservation"
+   ]
+  },
+  "gold": 0,
+  "id": "c037"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "Not great. The battery barely lasts an hour and it feels cheap, though the screen is okay.",
+  "question": {
+   "type": "score",
+   "instructions": "How satisfied is the reviewer with the product?",
+   "criteria": [
+    "Very dissatisfied: regrets buying it",
+    "Dissatisfied: more bad than good",
+    "Mixed or neutral",
+    "Satisfied: minor complaints at most",
+    "Delighted: recommends it without reservation"
+   ]
+  },
+  "gold": 1,
+  "id": "c038"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "It's fine. Does what it says, nothing special. Some things I like, some I don't.",
+  "question": {
+   "type": "score",
+   "instructions": "How satisfied is the reviewer with the product?",
+   "criteria": [
+    "Very dissatisfied: regrets buying it",
+    "Dissatisfied: more bad than good",
+    "Mixed or neutral",
+    "Satisfied: minor complaints at most",
+    "Delighted: recommends it without reservation"
+   ]
+  },
+  "gold": 2,
+  "id": "c039"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "Really happy with it overall. Setup took a while but it works well now.",
+  "question": {
+   "type": "score",
+   "instructions": "How satisfied is the reviewer with the product?",
+   "criteria": [
+    "Very dissatisfied: regrets buying it",
+    "Dissatisfied: more bad than good",
+    "Mixed or neutral",
+    "Satisfied: minor complaints at most",
+    "Delighted: recommends it without reservation"
+   ]
+  },
+  "gold": 3,
+  "id": "c040"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "Absolutely love it. Best purchase I've made this year, I've already recommended it to three friends.",
+  "question": {
+   "type": "score",
+   "instructions": "How satisfied is the reviewer with the product?",
+   "criteria": [
+    "Very dissatisfied: regrets buying it",
+    "Dissatisfied: more bad than good",
+    "Mixed or neutral",
+    "Satisfied: minor complaints at most",
+    "Delighted: recommends it without reservation"
+   ]
+  },
+  "gold": 4,
+  "id": "c041"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "Exceeded every expectation. Flawless build, gorgeous sound, and it arrived early. Five stars without hesitation.",
+  "question": {
+   "type": "score",
+   "instructions": "How satisfied is the reviewer with the product?",
+   "criteria": [
+    "Very dissatisfied: regrets buying it",
+    "Dissatisfied: more bad than good",
+    "Mixed or neutral",
+    "Satisfied: minor complaints at most",
+    "Delighted: recommends it without reservation"
+   ]
+  },
+  "gold": 4,
+  "id": "c042"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "The box was crushed and the glass lid was shattered when I opened it.",
+  "question": {
+   "type": "noul",
+   "instructions": "The reviewer says the product arrived damaged, broken or defective."
+  },
+  "gold": true,
+  "id": "c043"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "One of the legs was snapped off on arrival. Very disappointing.",
+  "question": {
+   "type": "noul",
+   "instructions": "The reviewer says the product arrived damaged, broken or defective."
+  },
+  "gold": true,
+  "id": "c044"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "Works perfectly and arrived well packaged. Very pleased.",
+  "question": {
+   "type": "noul",
+   "instructions": "The reviewer says the product arrived damaged, broken or defective."
+  },
+  "gold": false,
+  "id": "c045"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "A bit pricey for what it is, but the quality is good.",
+  "question": {
+   "type": "noul",
+   "instructions": "The reviewer says the product arrived damaged, broken or defective."
+  },
+  "gold": false,
+  "id": "c046"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "Took three weeks to arrive and the courier left it in the rain.",
+  "question": {
+   "type": "choice",
+   "instructions": "What is this review mainly about?",
+   "criteria": {
+    "price": "Whether it is worth the money",
+    "quality": "How well the product is made or performs",
+    "shipping": "Delivery speed, packaging and courier",
+    "customer_service": "Dealing with the seller's support staff"
+   }
+  },
+  "gold": "shipping",
+  "id": "c047"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "At this price it's a steal. You won't find better value anywhere.",
+  "question": {
+   "type": "choice",
+   "instructions": "What is this review mainly about?",
+   "criteria": {
+    "price": "Whether it is worth the money",
+    "quality": "How well the product is made or performs",
+    "shipping": "Delivery speed, packaging and courier",
+    "customer_service": "Dealing with the seller's support staff"
+   }
+  },
+  "gold": "price",
+  "id": "c048"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "I emailed support twice about a missing part and they were rude and unhelpful both times.",
+  "question": {
+   "type": "choice",
+   "instructions": "What is this review mainly about?",
+   "criteria": {
+    "price": "Whether it is worth the money",
+    "quality": "How well the product is made or performs",
+    "shipping": "Delivery speed, packaging and courier",
+    "customer_service": "Dealing with the seller's support staff"
+   }
+  },
+  "gold": "customer_service",
+  "id": "c049"
+ },
+ {
+  "domain": "Product reviews",
+  "state": "The stitching is coming apart after a month and the zip feels flimsy.",
+  "question": {
+   "type": "choice",
+   "instructions": "What is this review mainly about?",
+   "criteria": {
+    "price": "Whether it is worth the money",
+    "quality": "How well the product is made or performs",
+    "shipping": "Delivery speed, packaging and courier",
+    "customer_service": "Dealing with the seller's support staff"
+   }
+  },
+  "gold": "quality",
+  "id": "c050"
+ },
+ {
+  "domain": "Comments",
+  "state": "Earn $500 a day from home! Message me on Telegram to find out how.",
+  "question": {
+   "type": "noul",
+   "instructions": "Is this comment spam or self-promotion?",
+   "criteria": {
+    "true": "Advertises a link, a channel, a giveaway or a money scheme",
+    "false": "A genuine reaction to the content, positive or negative"
+   }
+  },
+  "gold": true,
+  "id": "c051"
+ },
+ {
+  "domain": "Comments",
+  "state": "Subscribe to my channel for daily giveaways, link in my profile!!",
+  "question": {
+   "type": "noul",
+   "instructions": "Is this comment spam or self-promotion?",
+   "criteria": {
+    "true": "Advertises a link, a channel, a giveaway or a money scheme",
+    "false": "A genuine reaction to the content, positive or negative"
+   }
+  },
+  "gold": true,
+  "id": "c052"
+ },
+ {
+  "domain": "Comments",
+  "state": "Get 10,000 followers instantly at followboost dot net, cheap and safe.",
+  "question": {
+   "type": "noul",
+   "instructions": "Is this comment spam or self-promotion?",
+   "criteria": {
+    "true": "Advertises a link, a channel, a giveaway or a money scheme",
+    "false": "A genuine reaction to the content, positive or negative"
+   }
+  },
+  "gold": true,
+  "id": "c053"
+ },
+ {
+  "domain": "Comments",
+  "state": "I disagree with your point about testing, but it was a well made video.",
+  "question": {
+   "type": "noul",
+   "instructions": "Is this comment spam or self-promotion?",
+   "criteria": {
+    "true": "Advertises a link, a channel, a giveaway or a money scheme",
+    "false": "A genuine reaction to the content, positive or negative"
+   }
+  },
+  "gold": false,
+  "id": "c054"
+ },
+ {
+  "domain": "Comments",
+  "state": "Could you share the slides from this talk?",
+  "question": {
+   "type": "noul",
+   "instructions": "Is this comment spam or self-promotion?",
+   "criteria": {
+    "true": "Advertises a link, a channel, a giveaway or a money scheme",
+    "false": "A genuine reaction to the content, positive or negative"
+   }
+  },
+  "gold": false,
+  "id": "c055"
+ },
+ {
+  "domain": "Comments",
+  "state": "You're an idiot and everyone here knows it.",
+  "question": {
+   "type": "noul",
+   "instructions": "This comment contains a personal insult aimed at someone."
+  },
+  "gold": true,
+  "id": "c056"
+ },
+ {
+  "domain": "Comments",
+  "state": "Only a complete moron would write code like this.",
+  "question": {
+   "type": "noul",
+   "instructions": "This comment contains a personal insult aimed at someone."
+  },
+  "gold": true,
+  "id": "c057"
+ },
+ {
+  "domain": "Comments",
+  "state": "I think this approach is wrong because it ignores caching.",
+  "question": {
+   "type": "noul",
+   "instructions": "This comment contains a personal insult aimed at someone."
+  },
+  "gold": false,
+  "id": "c058"
+ },
+ {
+  "domain": "Comments",
+  "state": "Thanks for explaining this so patiently.",
+  "question": {
+   "type": "noul",
+   "instructions": "This comment contains a personal insult aimed at someone."
+  },
+  "gold": false,
+  "id": "c059"
+ },
+ {
+  "domain": "Comments",
+  "state": "This was exactly what I needed, thank you so much!",
+  "question": {
+   "type": "choice",
+   "instructions": "What kind of comment is this?",
+   "criteria": {
+    "praise": "Thanks or compliments",
+    "question": "Asks the creator something",
+    "complaint": "Reports a problem or criticises",
+    "spam": "Advertising or scams"
+   }
+  },
+  "gold": "praise",
+  "id": "c060"
+ },
+ {
+  "domain": "Comments",
+  "state": "Which library did you use for the charts?",
+  "question": {
+   "type": "choice",
+   "instructions": "What kind of comment is this?",
+   "criteria": {
+    "praise": "Thanks or compliments",
+    "question": "Asks the creator something",
+    "complaint": "Reports a problem or criticises",
+    "spam": "Advertising or scams"
+   }
+  },
+  "gold": "question",
+  "id": "c061"
+ },
+ {
+  "domain": "Comments",
+  "state": "The sound cuts out completely at the five minute mark.",
+  "question": {
+   "type": "choice",
+   "instructions": "What kind of comment is this?",
+   "criteria": {
+    "praise": "Thanks or compliments",
+    "question": "Asks the creator something",
+    "complaint": "Reports a problem or criticises",
+    "spam": "Advertising or scams"
+   }
+  },
+  "gold": "complaint",
+  "id": "c062"
+ },
+ {
+  "domain": "Comments",
+  "state": "Make money fast with my forex signals group, join free today.",
+  "question": {
+   "type": "choice",
+   "instructions": "What kind of comment is this?",
+   "criteria": {
+    "praise": "Thanks or compliments",
+    "question": "Asks the creator something",
+    "complaint": "Reports a problem or criticises",
+    "spam": "Advertising or scams"
+   }
+  },
+  "gold": "spam",
+  "id": "c063"
+ },
+ {
+  "domain": "Comments",
+  "state": "Brilliant explanation, clearest one I've found.",
+  "question": {
+   "type": "choice",
+   "instructions": "What kind of comment is this?",
+   "criteria": {
+    "praise": "Thanks or compliments",
+    "question": "Asks the creator something",
+    "complaint": "Reports a problem or criticises",
+    "spam": "Advertising or scams"
+   }
+  },
+  "gold": "praise",
+  "id": "c064"
+ },
+ {
+  "domain": "News headlines",
+  "state": "Central bank holds interest rates as inflation cools to 2.1%",
+  "question": {
+   "type": "choice",
+   "instructions": "Which section of the newspaper does this headline belong in?",
+   "criteria": {
+    "world": "International affairs, politics and conflict",
+    "sports": "Sport and athletes",
+    "business": "Companies, markets and the economy",
+    "science_tech": "Science, technology and medicine",
+    "entertainment": "Film, music, TV and celebrities"
+   }
+  },
+  "gold": "business",
+  "id": "c065"
+ },
+ {
+  "domain": "News headlines",
+  "state": "Striker's hat-trick sends underdogs into cup final",
+  "question": {
+   "type": "choice",
+   "instructions": "Which section of the newspaper does this headline belong in?",
+   "criteria": {
+    "world": "International affairs, politics and conflict",
+    "sports": "Sport and athletes",
+    "business": "Companies, markets and the economy",
+    "science_tech": "Science, technology and medicine",
+    "entertainment": "Film, music, TV and celebrities"
+   }
+  },
+  "gold": "sports",
+  "id": "c066"
+ },
+ {
+  "domain": "News headlines",
+  "state": "Ceasefire talks resume as foreign ministers meet in Geneva",
+  "question": {
+   "type": "choice",
+   "instructions": "Which section of the newspaper does this headline belong in?",
+   "criteria": {
+    "world": "International affairs, politics and conflict",
+    "sports": "Sport and athletes",
+    "business": "Companies, markets and the economy",
+    "science_tech": "Science, technology and medicine",
+    "entertainment": "Film, music, TV and celebrities"
+   }
+  },
+  "gold": "world",
+  "id": "c067"
+ },
+ {
+  "domain": "News headlines",
+  "state": "Researchers unveil battery that charges in under five minutes",
+  "question": {
+   "type": "choice",
+   "instructions": "Which section of the newspaper does this headline belong in?",
+   "criteria": {
+    "world": "International affairs, politics and conflict",
+    "sports": "Sport and athletes",
+    "business": "Companies, markets and the economy",
+    "science_tech": "Science, technology and medicine",
+    "entertainment": "Film, music, TV and celebrities"
+   }
+  },
+  "gold": "science_tech",
+  "id": "c068"
+ },
+ {
+  "domain": "News headlines",
+  "state": "Director's long-awaited sequel tops weekend box office",
+  "question": {
+   "type": "choice",
+   "instructions": "Which section of the newspaper does this headline belong in?",
+   "criteria": {
+    "world": "International affairs, politics and conflict",
+    "sports": "Sport and athletes",
+    "business": "Companies, markets and the economy",
+    "science_tech": "Science, technology and medicine",
+    "entertainment": "Film, music, TV and celebrities"
+   }
+  },
+  "gold": "entertainment",
+  "id": "c069"
+ },
+ {
+  "domain": "News headlines",
+  "state": "Retail giant to close 40 stores after profits slump",
+  "question": {
+   "type": "choice",
+   "instructions": "Which section of the newspaper does this headline belong in?",
+   "criteria": {
+    "world": "International affairs, politics and conflict",
+    "sports": "Sport and athletes",
+    "business": "Companies, markets and the economy",
+    "science_tech": "Science, technology and medicine",
+    "entertainment": "Film, music, TV and celebrities"
+   }
+  },
+  "gold": "business",
+  "id": "c070"
+ },
+ {
+  "domain": "News headlines",
+  "state": "Marathon world record falls in Berlin",
+  "question": {
+   "type": "choice",
+   "instructions": "Which section of the newspaper does this headline belong in?",
+   "criteria": {
+    "world": "International affairs, politics and conflict",
+    "sports": "Sport and athletes",
+    "business": "Companies, markets and the economy",
+    "science_tech": "Science, technology and medicine",
+    "entertainment": "Film, music, TV and celebrities"
+   }
+  },
+  "gold": "sports",
+  "id": "c071"
+ },
+ {
+  "domain": "News headlines",
+  "state": "New telescope captures sharpest image yet of distant galaxy",
+  "question": {
+   "type": "choice",
+   "instructions": "Which section of the newspaper does this headline belong in?",
+   "criteria": {
+    "world": "International affairs, politics and conflict",
+    "sports": "Sport and athletes",
+    "business": "Companies, markets and the economy",
+    "science_tech": "Science, technology and medicine",
+    "entertainment": "Film, music, TV and celebrities"
+   }
+  },
+  "gold": "science_tech",
+  "id": "c072"
+ },
+ {
+  "domain": "News headlines",
+  "state": "Pop star announces surprise album and world tour",
+  "question": {
+   "type": "choice",
+   "instructions": "Which section of the newspaper does this headline belong in?",
+   "criteria": {
+    "world": "International affairs, politics and conflict",
+    "sports": "Sport and athletes",
+    "business": "Companies, markets and the economy",
+    "science_tech": "Science, technology and medicine",
+    "entertainment": "Film, music, TV and celebrities"
+   }
+  },
+  "gold": "entertainment",
+  "id": "c073"
+ },
+ {
+  "domain": "News headlines",
+  "state": "Thousands evacuated as floods hit coastal region abroad; aid agencies appeal to governments",
+  "question": {
+   "type": "choice",
+   "instructions": "Which section of the newspaper does this headline belong in?",
+   "criteria": {
+    "world": "International affairs, politics and conflict",
+    "sports": "Sport and athletes",
+    "business": "Companies, markets and the economy",
+    "science_tech": "Science, technology and medicine",
+    "entertainment": "Film, music, TV and celebrities"
+   }
+  },
+  "gold": "world",
+  "id": "c074"
+ },
+ {
+  "domain": "PII screening",
+  "state": "You can reach me on 07700 900123 after six.",
+  "question": {
+   "type": "noul",
+   "instructions": "The text contains a phone number or an email address."
+  },
+  "gold": true,
+  "id": "c075"
+ },
+ {
+  "domain": "PII screening",
+  "state": "Send the files to maria.lopez@example.org when they're ready.",
+  "question": {
+   "type": "noul",
+   "instructions": "The text contains a phone number or an email address."
+  },
+  "gold": true,
+  "id": "c076"
+ },
+ {
+  "domain": "PII screening",
+  "state": "I'll be in the office on Tuesday, let's talk then.",
+  "question": {
+   "type": "noul",
+   "instructions": "The text contains a phone number or an email address."
+  },
+  "gold": false,
+  "id": "c077"
+ },
+ {
+  "domain": "PII screening",
+  "state": "The meeting is in room 4 on the second floor.",
+  "question": {
+   "type": "noul",
+   "instructions": "The text contains a phone number or an email address."
+  },
+  "gold": false,
+  "id": "c078"
+ },
+ {
+  "domain": "PII screening",
+  "state": "Please charge it to 4539 1488 0343 6467, expiry 09/27.",
+  "question": {
+   "type": "noul",
+   "instructions": "The text contains what looks like a payment card number."
+  },
+  "gold": true,
+  "id": "c079"
+ },
+ {
+  "domain": "PII screening",
+  "state": "My card is 5500-0000-0000-0004, the name on it is J Smith.",
+  "question": {
+   "type": "noul",
+   "instructions": "The text contains what looks like a payment card number."
+  },
+  "gold": true,
+  "id": "c080"
+ },
+ {
+  "domain": "PII screening",
+  "state": "Order number 4539 has shipped.",
+  "question": {
+   "type": "noul",
+   "instructions": "The text contains what looks like a payment card number."
+  },
+  "gold": false,
+  "id": "c081"
+ },
+ {
+  "domain": "PII screening",
+  "state": "I paid by card yesterday and got a receipt.",
+  "question": {
+   "type": "noul",
+   "instructions": "The text contains what looks like a payment card number."
+  },
+  "gold": false,
+  "id": "c082"
+ },
+ {
+  "domain": "Assistant intents",
+  "state": "wake me up at half six tomorrow",
+  "question": {
+   "type": "choice",
+   "instructions": "What does the user want the assistant to do?",
+   "criteria": {
+    "set_alarm": "Set an alarm, timer or reminder",
+    "play_music": "Play a song, artist, playlist or radio",
+    "weather": "Tell them the weather or forecast",
+    "send_message": "Send a text or message to someone",
+    "navigation": "Give directions or travel time to a place"
+   }
+  },
+  "gold": "set_alarm",
+  "id": "c083"
+ },
+ {
+  "domain": "Assistant intents",
+  "state": "put on some Miles Davis",
+  "question": {
+   "type": "choice",
+   "instructions": "What does the user want the assistant to do?",
+   "criteria": {
+    "set_alarm": "Set an alarm, timer or reminder",
+    "play_music": "Play a song, artist, playlist or radio",
+    "weather": "Tell them the weather or forecast",
+    "send_message": "Send a text or message to someone",
+    "navigation": "Give directions or travel time to a place"
+   }
+  },
+  "gold": "play_music",
+  "id": "c084"
+ },
+ {
+  "domain": "Assistant intents",
+  "state": "will I need an umbrella this afternoon",
+  "question": {
+   "type": "choice",
+   "instructions": "What does the user want the assistant to do?",
+   "criteria": {
+    "set_alarm": "Set an alarm, timer or reminder",
+    "play_music": "Play a song, artist, playlist or radio",
+    "weather": "Tell them the weather or forecast",
+    "send_message": "Send a text or message to someone",
+    "navigation": "Give directions or travel time to a place"
+   }
+  },
+  "gold": "weather",
+  "id": "c085"
+ },
+ {
+  "domain": "Assistant intents",
+  "state": "text Priya that I'm running ten minutes late",
+  "question": {
+   "type": "choice",
+   "instructions": "What does the user want the assistant to do?",
+   "criteria": {
+    "set_alarm": "Set an alarm, timer or reminder",
+    "play_music": "Play a song, artist, playlist or radio",
+    "weather": "Tell them the weather or forecast",
+    "send_message": "Send a text or message to someone",
+    "navigation": "Give directions or travel time to a place"
+   }
+  },
+  "gold": "send_message",
+  "id": "c086"
+ },
+ {
+  "domain": "Assistant intents",
+  "state": "how long will it take to drive to the airport",
+  "question": {
+   "type": "choice",
+   "instructions": "What does the user want the assistant to do?",
+   "criteria": {
+    "set_alarm": "Set an alarm, timer or reminder",
+    "play_music": "Play a song, artist, playlist or radio",
+    "weather": "Tell them the weather or forecast",
+    "send_message": "Send a text or message to someone",
+    "navigation": "Give directions or travel time to a place"
+   }
+  },
+  "gold": "navigation",
+  "id": "c087"
+ },
+ {
+  "domain": "Assistant intents",
+  "state": "remind me to take the bins out at eight",
+  "question": {
+   "type": "choice",
+   "instructions": "What does the user want the assistant to do?",
+   "criteria": {
+    "set_alarm": "Set an alarm, timer or reminder",
+    "play_music": "Play a song, artist, playlist or radio",
+    "weather": "Tell them the weather or forecast",
+    "send_message": "Send a text or message to someone",
+    "navigation": "Give directions or travel time to a place"
+   }
+  },
+  "gold": "set_alarm",
+  "id": "c088"
+ },
+ {
+  "domain": "Assistant intents",
+  "state": "play my workout playlist",
+  "question": {
+   "type": "choice",
+   "instructions": "What does the user want the assistant to do?",
+   "criteria": {
+    "set_alarm": "Set an alarm, timer or reminder",
+    "play_music": "Play a song, artist, playlist or radio",
+    "weather": "Tell them the weather or forecast",
+    "send_message": "Send a text or message to someone",
+    "navigation": "Give directions or travel time to a place"
+   }
+  },
+  "gold": "play_music",
+  "id": "c089"
+ },
+ {
+  "domain": "Assistant intents",
+  "state": "what's the forecast for Saturday in Leeds",
+  "question": {
+   "type": "choice",
+   "instructions": "What does the user want the assistant to do?",
+   "criteria": {
+    "set_alarm": "Set an alarm, timer or reminder",
+    "play_music": "Play a song, artist, playlist or radio",
+    "weather": "Tell them the weather or forecast",
+    "send_message": "Send a text or message to someone",
+    "navigation": "Give directions or travel time to a place"
+   }
+  },
+  "gold": "weather",
+  "id": "c090"
+ },
+ {
+  "domain": "Assistant intents",
+  "state": "tell mum I'll call her tonight",
+  "question": {
+   "type": "choice",
+   "instructions": "What does the user want the assistant to do?",
+   "criteria": {
+    "set_alarm": "Set an alarm, timer or reminder",
+    "play_music": "Play a song, artist, playlist or radio",
+    "weather": "Tell them the weather or forecast",
+    "send_message": "Send a text or message to someone",
+    "navigation": "Give directions or travel time to a place"
+   }
+  },
+  "gold": "send_message",
+  "id": "c091"
+ },
+ {
+  "domain": "Assistant intents",
+  "state": "take me to the nearest petrol station",
+  "question": {
+   "type": "choice",
+   "instructions": "What does the user want the assistant to do?",
+   "criteria": {
+    "set_alarm": "Set an alarm, timer or reminder",
+    "play_music": "Play a song, artist, playlist or radio",
+    "weather": "Tell them the weather or forecast",
+    "send_message": "Send a text or message to someone",
+    "navigation": "Give directions or travel time to a place"
+   }
+  },
+  "gold": "navigation",
+  "id": "c092"
+ },
+ {
+  "domain": "Claim checking",
+  "state": {
+   "text": "The museum is open Tuesday to Sunday, 10am to 6pm. It is closed on Mondays.",
+   "claim": "The museum is closed on Mondays."
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "The `claim` is supported by the `text`.",
+   "criteria": {
+    "true": "The text clearly states or directly implies the claim",
+    "false": "The text contradicts the claim or does not say"
+   }
+  },
+  "gold": true,
+  "id": "c093"
+ },
+ {
+  "domain": "Claim checking",
+  "state": {
+   "text": "The museum is open Tuesday to Sunday, 10am to 6pm. It is closed on Mondays.",
+   "claim": "The museum is open every day of the week."
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "The `claim` is supported by the `text`.",
+   "criteria": {
+    "true": "The text clearly states or directly implies the claim",
+    "false": "The text contradicts the claim or does not say"
+   }
+  },
+  "gold": false,
+  "id": "c094"
+ },
+ {
+  "domain": "Claim checking",
+  "state": {
+   "text": "Revenue rose 12% to $4.1 billion, driven by strong demand in Asia.",
+   "claim": "Revenue increased."
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "The `claim` is supported by the `text`.",
+   "criteria": {
+    "true": "The text clearly states or directly implies the claim",
+    "false": "The text contradicts the claim or does not say"
+   }
+  },
+  "gold": true,
+  "id": "c095"
+ },
+ {
+  "domain": "Claim checking",
+  "state": {
+   "text": "Revenue rose 12% to $4.1 billion, driven by strong demand in Asia.",
+   "claim": "Revenue fell compared with last year."
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "The `claim` is supported by the `text`.",
+   "criteria": {
+    "true": "The text clearly states or directly implies the claim",
+    "false": "The text contradicts the claim or does not say"
+   }
+  },
+  "gold": false,
+  "id": "c096"
+ },
+ {
+  "domain": "Claim checking",
+  "state": {
+   "text": "The trial enrolled 300 adults and found no significant difference between the drug and placebo.",
+   "claim": "The drug worked better than placebo."
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "The `claim` is supported by the `text`.",
+   "criteria": {
+    "true": "The text clearly states or directly implies the claim",
+    "false": "The text contradicts the claim or does not say"
+   }
+  },
+  "gold": false,
+  "id": "c097"
+ },
+ {
+  "domain": "Claim checking",
+  "state": {
+   "text": "All flights from the airport were cancelled on Friday because of heavy snow.",
+   "claim": "Bad weather disrupted flights on Friday."
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "The `claim` is supported by the `text`.",
+   "criteria": {
+    "true": "The text clearly states or directly implies the claim",
+    "false": "The text contradicts the claim or does not say"
+   }
+  },
+  "gold": true,
+  "id": "c098"
+ },
+ {
+  "domain": "Claim checking",
+  "state": {
+   "text": "The recipe uses butter, flour, sugar and two eggs.",
+   "claim": "The recipe is vegan."
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "The `claim` is supported by the `text`.",
+   "criteria": {
+    "true": "The text clearly states or directly implies the claim",
+    "false": "The text contradicts the claim or does not say"
+   }
+  },
+  "gold": false,
+  "id": "c099"
+ },
+ {
+  "domain": "Claim checking",
+  "state": {
+   "text": "Anna moved to Lisbon in 2019 and has worked there as an architect ever since.",
+   "claim": "Anna works as an architect."
+  },
+  "question": {
+   "type": "noul",
+   "instructions": "The `claim` is supported by the `text`.",
+   "criteria": {
+    "true": "The text clearly states or directly implies the claim",
+    "false": "The text contradicts the claim or does not say"
+   }
+  },
+  "gold": true,
+  "id": "c100"
+ }
+]

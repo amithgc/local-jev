@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System One comparison</title>
+<style>
+:root { color-scheme: light; --bg:#f6f6f4; --surface:#fcfcfb; --line:#e4e3de; --text:#0b0b0b; --text2:#52514e; --muted:#8a8984; --track:#ecebe6; --chip:#f0efea;
+        --good:#0ca30c; --critical:#d03b3b; --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; }
+@media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) { color-scheme: dark; --bg:#111110; --surface:#1a1a19; --line:#2e2e2b; --text:#fff;
+        --text2:#c3c2b7; --muted:#8f8e86; --track:#2a2a27; --chip:#262623; --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; } }
+:root[data-theme="dark"] { color-scheme: dark; --bg:#111110; --surface:#1a1a19; --line:#2e2e2b; --text:#fff; --text2:#c3c2b7; --muted:#8f8e86; --track:#2a2a27;
+        --chip:#262623; --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text); font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+main { max-width:1240px; margin:0 auto; padding:28px 16px 80px; }
+h1 { font-size:24px; margin:0 0 4px; letter-spacing:-.02em; } h2 { font-size:15px; margin:0 0 14px; } p { margin:0; }
+.sub { color:var(--text2); max-width:800px; } .note { color:var(--text2); font-size:13px; margin-top:12px; max-width:900px; }
+.grid { display:grid; gap:14px; margin-top:18px; } .tiles { grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); } .g2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.card { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:18px; min-width:0; }
+.tile .k { display:flex; align-items:center; gap:7px; font-weight:550; overflow:hidden; } .tile .k span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.tile .kind { color:var(--text2); font-size:12.5px; } .tile .v { font-size:32px; font-weight:650; letter-spacing:-.02em; line-height:1.15; margin-top:8px; font-variant-numeric:tabular-nums; }
+.tile .d { color:var(--text2); font-size:12.5px; margin-top:2px; }
+.sw { width:11px; height:11px; border-radius:3px; display:inline-block; flex:none; }
+.bars .grp { display:grid; grid-template-columns:140px minmax(0,1fr); gap:12px; align-items:center; padding:8px 0; border-top:1px solid var(--line); }
+.bars .grp:first-of-type { border-top:0; } .bars .name { font-size:13px; } .bars .name small { color:var(--muted); display:block; }
+.bar { display:grid; grid-template-columns:118px minmax(0,1fr) 40px; gap:8px; align-items:center; min-height:15px; cursor:default; }
+.bar .who { font-size:11.5px; color:var(--text2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.bar .t { height:7px; background:var(--track); border-radius:4px; overflow:hidden; } .bar .f { height:100%; border-radius:0 4px 4px 0; }
+.bar .n { font-size:12.5px; text-align:right; font-variant-numeric:tabular-nums; }
+table { border-collapse:collapse; width:100%; } th { text-align:left; font-weight:500; color:var(--text2); font-size:12.5px; padding:0 12px 8px 0; white-space:nowrap; vertical-align:bottom; }
+td { padding:9px 10px 9px 0; border-top:1px solid var(--line); vertical-align:top; } td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; }
+.sysname { display:flex; align-items:center; gap:7px; font-weight:500; white-space:nowrap; } .sysname small { color:var(--muted); font-weight:400; }
+.controls { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:14px; }
+.controls button, .controls select, .controls input { font:inherit; font-size:13px; color:var(--text); background:var(--surface); border:1px solid var(--line); border-radius:8px; height:32px; padding:0 11px; cursor:pointer; }
+.controls input { cursor:text; min-width:160px; flex:1; max-width:260px; } .controls button.on { background:var(--text); color:var(--surface); border-color:var(--text); }
+.controls .count { color:var(--text2); font-size:13px; margin-left:auto; }
+.cases td { font-size:13px; } .cases .state { color:var(--text2); min-width:170px; max-width:250px; white-space:pre-wrap; word-break:break-word; } .cases .q { min-width:120px; max-width:170px; }
+.cases .id { color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap; } .cases tbody tr { cursor:pointer; } .cases tbody tr:hover td { background:var(--chip); }
+.dom { display:inline-block; background:var(--chip); border-radius:5px; padding:1px 7px; font-size:11.5px; color:var(--text2); margin-top:4px; }
+.ans { min-width:100px; max-width:150px; } .ans .top { display:flex; align-items:flex-start; gap:6px; font-weight:500; line-height:1.3; } .ans .meta { color:var(--text2); font-size:11.5px; margin:1px 0 0 22px; }
+.mark { display:inline-flex; width:16px; height:16px; border-radius:50%; align-items:center; justify-content:center; font-size:10.5px; font-weight:700; color:#fff; flex:none; margin-top:1px; }
+.mark.ok { background:var(--good); } .mark.no { background:var(--critical); } .mark.na { background:var(--muted); }
+.mini { display:grid; grid-template-columns:minmax(0,1fr) 38px 28px; gap:5px; align-items:center; font-size:11px; color:var(--text2); margin-top:3px; }
+.mini .l { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .mini .t { height:4px; background:var(--track); border-radius:3px; overflow:hidden; } .mini .f { display:block; height:100%; }
+.mini .n { text-align:right; font-variant-numeric:tabular-nums; } .mini.win { color:var(--text); } .dist { display:none; margin-top:5px; } tr.open .dist { display:block; }
+.gold { font-weight:500; min-width:90px; max-width:130px; } .wrap { overflow-x:auto; }
+#tip { position:fixed; pointer-events:none; background:var(--text); color:var(--surface); font-size:12px; padding:6px 9px; border-radius:6px; z-index:9; display:none; max-width:300px; }
+@media (max-width:860px) { .g2 { grid-template-columns:1fr; } .bars .grp { grid-template-columns:1fr; gap:4px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>System One comparison</h1>
+  <p class="sub" id="lede"></p>
+  <div class="grid tiles" id="tiles"></div>
+
+  <section class="card" style="margin-top:14px" id="jevbench-card"><h2>Independent benchmark: JevBench public items</h2>
+    <p class="note" style="margin:-6px 0 12px" id="jevbench-note"></p>
+    <div class="wrap"><table id="jevbench"></table></div></section>
+
+  <section class="card" style="margin-top:14px"><h2>This comparison: 100 hand-written cases</h2><div class="wrap"><table id="summary"></table></div>
+    <p class="note" id="summary-note"></p></section>
+
+  <div class="grid g2">
+    <section class="card bars"><h2>Accuracy by question type</h2><div id="by-type"></div></section>
+    <section class="card bars"><h2>Accuracy by domain</h2><div id="by-domain"></div></section>
+  </div>
+
+  <section class="card" style="margin-top:14px">
+    <h2>All cases</h2>
+    <div class="controls" id="controls"></div>
+    <div class="wrap"><table class="cases"><thead id="head"></thead><tbody id="rows"></tbody></table></div>
+  </section>
+  <p class="note">Test cases: <code>evals/compare/cases.json</code>, written by hand, each with a known correct answer, never used for training. Every system received identical requests.
+    Regenerate with <code>python evals/compare/run_compare.py</code>; <code>--systems</code> picks what to compare and <code>--refresh</code> calls the APIs again.
+    Responses from the hosted API are cached locally for this report only and are not used as training data.</p>
+</main>
+<div id="tip"></div>
+<script>
+const D = /*__DATA__*/null;
+const $ = (s, r = document) => r.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const pct = (x) => x == null ? "–" : Math.round(x * 100) + "%";
+const TYPE = { choice: "Category", noul: "Yes / No", score: "Score" };
+const SYS = D.systems, S = D.summary;
+SYS.forEach((s, i) => { s.color = `var(--s${Math.min(i + 1, 6)})`; });      // colour follows the system, in fixed order
+const sw = (s) => `<i class="sw" style="background:${s.color}"></i>`;
+
+$("#lede").textContent = `${D.rows.length} hand-written test cases across ${Object.keys(D.breakdown.domain).length} domains, each with a known correct answer, ` +
+  `sent to ${SYS.length} system${SYS.length === 1 ? "" : "s"} with identical requests. Generated ${D.generated}.`;
+
+$("#tiles").innerHTML = SYS.map((s) => { const m = S[s.id];
+  return `<div class="card tile"><div class="k">${sw(s)}<span title="${esc(s.label)}">${esc(s.label)}</span></div><div class="kind">${esc(s.kind)}</div>
+    <div class="v">${pct(m.accuracy)}</div><div class="d">${Math.round(m.accuracy * m.n)} of ${m.n} correct${m.errors ? ` · ${m.errors} errors` : ""}</div>
+    <div class="d">${Math.round(m.median_ms)} ms median, ${esc(s.where)}</div></div>`; }).join("");
+
+const ref = D.reference && SYS.find((s) => s.id === D.reference);
+/* ---- independent benchmark, read from the model cards (evals/jevbench_cards.py) ---- */
+const JB = SYS.filter((s) => s.evaluation && s.evaluation.accuracy != null);
+const JEV_TIERS = { easy: 48 / 48, standard: 71 / 72, hard: 81 / 111 };      // JevBench v1.2 per-task results, public items
+if (!JB.length) { $("#jevbench-card").remove(); }
+else {
+  const e0 = JB[0].evaluation, ref = (e0.reference || {})["jev-1.13.0"];
+  $("#jevbench-note").textContent = `${e0.items} public decisions from JevBench (Benchmark Heaven, github.com/fstandhartinger/jevbench), in three tiers. ` +
+    `Independent of this project and much harder than the cases below. Jev's row is its published result on the same items; local rows were measured on ${e0.hardware || "this machine"}, one decision per request through the local API.`;
+  const rows = JB.map((s) => ({ s, e: s.evaluation })).sort((a, b) => b.e.accuracy - a.e.accuracy);
+  const bar = (v, color) => `<span style="display:inline-block;width:70px;height:6px;background:var(--track);border-radius:4px;vertical-align:middle;margin-right:8px;overflow:hidden"><i style="display:block;height:100%;width:${v * 100}%;background:${color}"></i></span>`;
+  $("#jevbench").innerHTML = `<thead><tr><th>System</th><th class="num">Accuracy</th><th class="num">Easy (48)</th><th class="num">Standard (72)</th><th class="num">Hard (111)</th><th class="num">Median latency</th><th class="num">p95 latency</th></tr></thead><tbody>` +
+    (ref ? `<tr><td><div class="sysname"><i class="sw" style="background:var(--muted)"></i>Jev <small>hosted API · published</small></div></td><td class="num">${bar(ref, "var(--muted)")}<b>${pct(ref)}</b></td>
+      <td class="num">${pct(JEV_TIERS.easy)}</td><td class="num">${pct(JEV_TIERS.standard)}</td><td class="num">${pct(JEV_TIERS.hard)}</td><td class="num">–</td><td class="num">–</td></tr>` : "") +
+    rows.map(({ s, e }) => `<tr><td><div class="sysname">${sw(s)}${esc(s.label)} <small>${esc(s.kind)}</small></div></td><td class="num">${bar(e.accuracy, s.color)}<b>${pct(e.accuracy)}</b></td>
+      <td class="num">${pct((e.by_tier || {}).easy)}</td><td class="num">${pct((e.by_tier || {}).standard)}</td><td class="num">${pct((e.by_tier || {}).hard)}</td>
+      <td class="num">${e.p50_ms != null ? e.p50_ms + " ms" : "–"}</td><td class="num">${e.p95_ms != null ? e.p95_ms + " ms" : "–"}</td></tr>`).join("") + `</tbody>`;
+}
+
+$("#summary").innerHTML = `<thead><tr><th>System</th><th class="num">Accuracy</th>${ref ? `<th class="num">Same answer<br>as ${esc(ref.label)}</th>` : ""}
+  <th class="num">Says it<br>is sure</th><th class="num">Accuracy<br>when sure</th><th class="num">Accuracy<br>when unsure</th><th class="num">Score error<br>(levels)</th>
+  <th class="num">Median<br>latency</th><th class="num">p90<br>latency</th></tr></thead><tbody>` + SYS.map((s) => { const m = S[s.id];
+  return `<tr><td><div class="sysname">${sw(s)}${esc(s.label)} <small>${esc(s.kind)}${s.model && s.model !== s.label ? " · " + esc(s.model) : ""}</small></div></td>
+    <td class="num"><b>${pct(m.accuracy)}</b></td>${ref ? `<td class="num">${s.id === ref.id ? "–" : pct(m.agreement)}</td>` : ""}
+    <td class="num">${pct(m.confident_share)}</td><td class="num">${pct(m.confident_accuracy)}</td><td class="num">${pct(m.unsure_accuracy)}</td>
+    <td class="num">${m.score_mae == null ? "–" : m.score_mae.toFixed(2)}</td><td class="num">${Math.round(m.median_ms)} ms</td><td class="num">${Math.round(m.p90_ms)} ms</td></tr>`; }).join("") + `</tbody>`;
+$("#summary-note").textContent = `"Sure" means a confidence of at least 0.8 (for yes/no: a probability of at least 0.8 either way). A system you can route on is much more accurate when it says it is sure, and says so often. ` +
+  `Score error is the average distance, in levels, between the expected score and the correct level. Latency is per request, one question each; hosted calls include the network round trip.`;
+
+function bars(host, axis, label) {
+  const groups = Object.entries(D.breakdown[axis]).sort((a, b) => a[0].localeCompare(b[0]));
+  host.innerHTML = groups.map(([name, g]) => { const n = g[SYS[0].id].n + (g[SYS[0].id].errors || 0);
+    return `<div class="grp"><div class="name">${esc(label(name))}<small>${n} cases</small></div><div>` + SYS.map((s) => { const m = g[s.id];
+      return m.n ? `<div class="bar" data-tip="${esc(s.label)} · ${esc(label(name))}: ${Math.round(m.accuracy * m.n)} of ${m.n} correct"><span class="who">${esc(s.label)}</span>
+        <div class="t"><div class="f" style="width:${m.accuracy * 100}%;background:${s.color}"></div></div><div class="n">${pct(m.accuracy)}</div></div>` : ""; }).join("") + `</div></div>`; }).join("");
+}
+bars($("#by-type"), "type", (t) => TYPE[t] || t);
+bars($("#by-domain"), "domain", (d) => d);
+
+/* ---- case table ---- */
+const F = { view: "all", who: SYS[SYS.length - 1].id, type: "", domain: "", text: "" };
+$("#controls").innerHTML = `<button data-view="all" class="on">All</button><button data-view="disagree">Systems disagree</button><button data-view="wrong">Wrong for</button>` +
+  `<select id="f-who">${SYS.map((s) => `<option value="${esc(s.id)}" ${s.id === F.who ? "selected" : ""}>${esc(s.label)}</option>`).join("")}</select>` +
+  `<select id="f-type"><option value="">All types</option>${Object.keys(D.breakdown.type).map((t) => `<option value="${t}">${TYPE[t]}</option>`).join("")}</select>` +
+  `<select id="f-domain"><option value="">All domains</option>${Object.keys(D.breakdown.domain).map((d) => `<option>${esc(d)}</option>`).join("")}</select>` +
+  `<input id="f-text" type="search" placeholder="Search text…"><span class="count" id="count"></span>`;
+$("#head").innerHTML = `<tr><th>#</th><th>Input</th><th>Question</th><th>Correct answer</th>${SYS.map((s) => `<th><span class="sysname">${sw(s)}${esc(s.label)}</span></th>`).join("")}</tr>`;
+
+const stateText = (s) => typeof s === "string" ? s : Array.isArray(s) ? s.join("\n") : Object.entries(s).map(([k, v]) => `${k}: ${v}`).join("\n");
+function answer(v, s) {
+  if (v.error) return `<div class="ans"><div class="top"><span class="mark na">!</span></div><div class="meta">${esc(v.error)}</div></div>`;
+  const entries = Object.entries(v.probs || {}).sort((a, b) => b[1] - a[1]), top = entries.length ? entries[0][1] : 0;
+  const dist = entries.slice(0, 5).map(([k, p]) => `<div class="mini ${p === top ? "win" : ""}"><span class="l" title="${esc(k)}">${esc(k)}</span>
+    <span class="t"><span class="f" style="width:${p * 100}%;background:${s.color}"></span></span><span class="n">${Math.round(p * 100)}%</span></div>`).join("");
+  return `<div class="ans"><div class="top"><span class="mark ${v.right ? "ok" : "no"}" title="${v.right ? "correct" : "wrong"}">${v.right ? "✓" : "✕"}</span><span>${esc(v.label)}</span></div>
+    <div class="meta">${v.right ? "correct" : "wrong"} · sure ${v.sure.toFixed(2)} · ${Math.round(v.ms)} ms</div><div class="dist">${dist}</div></div>`;
+}
+function render() {
+  const rows = D.rows.filter((r) => {
+    const said = SYS.map((s) => r.answers[s.id]).filter((v) => !v.error).map((v) => String(v.said));
+    if (F.view === "disagree" && new Set(said).size < 2) return false;
+    if (F.view === "wrong" && r.answers[F.who].right !== false) return false;
+    if (F.type && r.type !== F.type) return false;
+    if (F.domain && r.domain !== F.domain) return false;
+    if (F.text && !(stateText(r.state) + " " + r.instructions).toLowerCase().includes(F.text)) return false;
+    return true;
+  });
+  $("#count").textContent = `${rows.length} of ${D.rows.length} cases · click a row for the probabilities`;
+  $("#rows").innerHTML = rows.map((r) => `<tr><td class="id">${r.id.slice(1)}</td><td class="state">${esc(stateText(r.state))}<br><span class="dom">${esc(r.domain)}</span></td>
+    <td class="q">${esc(r.instructions)}<br><span class="dom">${TYPE[r.type]}</span></td><td class="gold">${esc(r.gold)}</td>
+    ${SYS.map((s) => `<td>${answer(r.answers[s.id], s)}</td>`).join("")}</tr>`).join("") || `<tr><td colspan="${4 + SYS.length}" style="color:var(--text2);padding:24px 0">No cases match.</td></tr>`;
+}
+$("#controls").addEventListener("click", (e) => { const b = e.target.closest("[data-view]"); if (!b) return;
+  F.view = b.dataset.view; document.querySelectorAll("[data-view]").forEach((x) => x.classList.toggle("on", x === b)); render(); });
+$("#f-who").addEventListener("change", (e) => { F.who = e.target.value; F.view = "wrong";
+  document.querySelectorAll("[data-view]").forEach((x) => x.classList.toggle("on", x.dataset.view === "wrong")); render(); });
+$("#f-type").addEventListener("change", (e) => { F.type = e.target.value; render(); });
+$("#f-domain").addEventListener("change", (e) => { F.domain = e.target.value; render(); });
+$("#f-text").addEventListener("input", (e) => { F.text = e.target.value.trim().toLowerCase(); render(); });
+$("#rows").addEventListener("click", (e) => { const tr = e.target.closest("tr"); if (tr) tr.classList.toggle("open"); });
+render();
+
+const tip = $("#tip");
+document.addEventListener("mousemove", (e) => { const t = e.target.closest("[data-tip]");
+  if (!t) { tip.style.display = "none"; return; }
+  tip.textContent = t.dataset.tip; tip.style.display = "block";
+  tip.style.left = Math.min(e.clientX + 12, innerWidth - tip.offsetWidth - 8) + "px"; tip.style.top = (e.clientY + 14) + "px"; });
+</script>
+</body>
+</html>

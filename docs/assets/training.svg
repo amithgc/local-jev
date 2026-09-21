@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620" viewBox="0 0 800 620" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0969da"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="798" height="618" rx="14" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="28" y="38" font-size="18" font-weight="700" fill="#1f2328">Data, fine-tuning and the checks a tuned model must pass</text>
+
+  <text x="28" y="70" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">1  DATA    training/tasks.py, build_data.py  ·  model-independent</text>
+  <g text-anchor="middle">
+    <rect x="28" y="82" width="224" height="116" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="140" y="104" font-size="13" font-weight="600" fill="#1f2328">Human-labelled sources</text>
+    <text font-size="10.5" fill="#59636e">
+      <tspan x="140" y="123">61 public tasks: topics, intents, support,</tspan>
+      <tspan x="140" y="138">sentiment, spam, moderation, entailment,</tspan>
+      <tspan x="140" y="153">ratings; 9 of them held out entirely</tspan>
+      <tspan x="140" y="172">+ two small hand-written families</tspan>
+      <tspan x="140" y="188" fill="#1f2328" font-weight="600">No labels from Jev or any other model</tspan>
+    </text>
+
+    <rect x="288" y="82" width="224" height="116" rx="8" fill="#ffffff" stroke="#0969da"/>
+    <text x="400" y="104" font-size="13" font-weight="600" fill="#1f2328">Task generators</text>
+    <text font-size="10.5" fill="#59636e">
+      <tspan x="400" y="123">shuffled options, option subsets,</tspan>
+      <tspan x="400" y="138">a fair prior for "other", key styles,</tspan>
+      <tspan x="400" y="153">descriptions on and off, paraphrased</tspan>
+      <tspan x="400" y="168">instructions, string / object / array</tspan>
+      <tspan x="400" y="183">states, every class askable as a yes/no</tspan>
+    </text>
+
+    <rect x="548" y="82" width="224" height="116" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="660" y="104" font-size="13" font-weight="600" fill="#1f2328">Wire-format JSONL</text>
+    <text font-family="Menlo, Consolas, monospace" font-size="9.5" fill="#1f2328">
+      <tspan x="660" y="124">{"state", "question", "gold", "task"}</tspan>
+    </text>
+    <text font-size="10.5" fill="#59636e">
+      <tspan x="660" y="146">train.jsonl   held-in tasks</tspan>
+      <tspan x="660" y="161">calib.jsonl   unseen rows, same tasks</tspan>
+      <tspan x="660" y="176">eval/*.jsonl   every task, incl. held-out</tspan>
+    </text>
+  </g>
+  <path d="M252,140 L286,140" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M512,140 L546,140" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M660,198 L660,246" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="28" y="236" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">2  OPTIONAL FINE-TUNE    training/train_nli.py  ·  status: no tuned model evaluated yet</text>
+  <g text-anchor="middle">
+    <rect x="548" y="248" width="224" height="116" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+    <text x="660" y="270" font-size="13" font-weight="600" fill="#1f2328">The backend's own hypotheses()</text>
+    <text font-size="10.5" fill="#59636e">
+      <tspan x="660" y="289">every example rendered exactly as the</tspan>
+      <tspan x="660" y="304">server renders a live request, so training</tspan>
+      <tspan x="660" y="319">and inference cannot drift apart</tspan>
+      <tspan x="660" y="342" fill="#1f2328" font-weight="600">gold answer + up to 5 rivals;</tspan>
+      <tspan x="660" y="357" fill="#1f2328" font-weight="600">neighbouring levels first, for scores</tspan>
+    </text>
+
+    <rect x="288" y="248" width="224" height="116" rx="8" fill="#ffffff" stroke="#0969da"/>
+    <text x="400" y="270" font-size="13" font-weight="600" fill="#1f2328">Loss mirrors inference</text>
+    <text font-size="10.5" fill="#59636e">
+      <tspan x="400" y="289">choice, score: softmax over the answers'</tspan>
+      <tspan x="400" y="304">entailment log-odds, cross-entropy</tspan>
+      <tspan x="400" y="319">yes/no: binary cross-entropy on log-odds</tspan>
+      <tspan x="400" y="342" fill="#1f2328" font-weight="600">Gentle on purpose: lr 5e-6, one pass</tspan>
+      <tspan x="400" y="357" fill="#1f2328" font-weight="600">over 40k examples</tspan>
+    </text>
+
+    <rect x="28" y="248" width="224" height="116" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="140" y="270" font-size="13" font-weight="600" fill="#1f2328">A model and its card</text>
+    <text font-family="Menlo, Consolas, monospace" font-size="9.5" fill="#1f2328">
+      <tspan x="140" y="291">models/hf/NAME/</tspan>
+      <tspan x="140" y="306">models/cards/NAME.json</tspan>
+    </text>
+    <text font-size="10.5" fill="#59636e">
+      <tspan x="140" y="328">backend nli, priority 75: listed on the</tspan>
+      <tspan x="140" y="343">next start, ranked above the untuned</tspan>
+      <tspan x="140" y="358">entailment model (priority 50)</tspan>
+    </text>
+  </g>
+  <path d="M546,306 L514,306" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M286,306 L254,306" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M140,364 L140,412" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <text x="288" y="402" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">3  CALIBRATE, THEN JUDGE    works for any model, tuned or not</text>
+  <g text-anchor="middle">
+    <rect x="28" y="414" width="224" height="116" rx="8" fill="#ffffff" stroke="#0969da"/>
+    <text x="140" y="436" font-size="13" font-weight="600" fill="#1f2328">calibrate.py --model NAME</text>
+    <text font-size="10.5" fill="#59636e">
+      <tspan x="140" y="455">one temperature per primitive, fitted</tspan>
+      <tspan x="140" y="470">on calib.jsonl, written into the card</tspan>
+      <tspan x="140" y="493" fill="#1f2328" font-weight="600">choice, yes/no: likelihood</tspan>
+      <tspan x="140" y="508" fill="#1f2328" font-weight="600">score: error of the expected level</tspan>
+    </text>
+
+    <rect x="288" y="414" width="224" height="116" rx="8" fill="#ffffff" stroke="#0969da"/>
+    <text x="400" y="436" font-size="13" font-weight="600" fill="#1f2328">run_eval.py --model NAME</text>
+    <text font-size="10.5" fill="#59636e">
+      <tspan x="400" y="455">accuracy, Brier score, ECE, NLL</tspan>
+      <tspan x="400" y="470">against the untuned base, same sets</tspan>
+      <tspan x="400" y="493" fill="#1f2328" font-weight="600">Held-out tasks decide: a gain on seen</tspan>
+      <tspan x="400" y="508" fill="#1f2328" font-weight="600">tasks with a loss there is a failed run</tspan>
+    </text>
+
+    <rect x="548" y="414" width="224" height="116" rx="8" fill="#ffffff" stroke="#0969da"/>
+    <text x="660" y="436" font-size="13" font-weight="600" fill="#1f2328">JevBench, then the comparator</text>
+    <text font-size="10.5" fill="#59636e">
+      <tspan x="660" y="455">JevBench public items: the headline,</tspan>
+      <tspan x="660" y="470">through the real API; untuned: 54.1%</tspan>
+      <tspan x="660" y="493" fill="#1f2328" font-weight="600">Our own 100 cases: a quick regression</tspan>
+      <tspan x="660" y="508" fill="#1f2328" font-weight="600">check only; they proved too easy</tspan>
+    </text>
+  </g>
+  <path d="M252,472 L286,472" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M512,472 L546,472" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="28" y="552" width="744" height="46" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="42" y="572" font-size="11.5" fill="#1f2328"><tspan font-weight="600">Why so careful:</tspan> the entailment model's strength is that it is general. Full fine-tuning can trade that away for points on familiar tasks.</text>
+  <text x="42" y="589" font-size="11.5" fill="#1f2328">A tuned model that clears all three checks can replace the untuned one.</text>
+</svg>

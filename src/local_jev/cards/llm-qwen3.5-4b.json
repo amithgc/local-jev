@@ -1,0 +1,73 @@
+{
+  "name": "llm-qwen3.5-4b",
+  "backend": "llm",
+  "priority": 95,
+  "description": "Qwen3.5-4B (text model) read at the answer token, with SemIf's JSON prompt layout (github.com/TheoLeeCJ/SemIf). Zero-shot, no fine-tuning by this project.",
+  "release_date": "2026-09-21",
+  "license": "Apache-2.0 (Qwen/Qwen3.5-4B)",
+  "hf_model": "Qwen/Qwen3.5-4B",
+  "context_tokens": 32768,
+  "batch_size": 4,
+  "evaluation": {
+    "benchmark": "JevBench public",
+    "items": 231,
+    "accuracy": 0.8052,
+    "by_tier": {
+      "easy": 1.0,
+      "standard": 0.9583,
+      "hard": 0.6216
+    },
+    "p50_ms": 651,
+    "p95_ms": 6860,
+    "failed": 0,
+    "hardware": "Apple M4 Max",
+    "measured": "2026-09-21",
+    "reference": {
+      "jev-1.13.0": 0.866
+    }
+  },
+  "size": {
+    "params": "4B",
+    "download_gb": 9.32,
+    "memory_gb": 8.5
+  },
+  "prompt": "json",
+  "summary": "The most accurate model here: 80.5% on JevBench's public items, 6 points behind hosted Jev.",
+  "use_when": [
+    "Accuracy matters most: policy checks, multi-step judgments, long documents.",
+    "You ask several questions about the same text: the text is read once and shared across them.",
+    "You have about 9 GB of free memory."
+  ],
+  "avoid_when": [
+    "You need answers in well under a second on a Mac: it takes about 0.65 s per request here, and several seconds for very long documents.",
+    "Memory is tight: use llm-qwen3.5-2b or nli-deberta-large."
+  ],
+  "calibration": {
+    "temperature": {
+      "choice": 1.599,
+      "score": 1.002,
+      "noul": 2.68
+    },
+    "fit": {
+      "choice": {
+        "n": 511,
+        "objective": "nll",
+        "before": 0.7622,
+        "after": 0.6703
+      },
+      "score": {
+        "n": 205,
+        "objective": "level_error",
+        "before": 0.5268,
+        "after": 0.5268
+      },
+      "noul": {
+        "n": 784,
+        "objective": "nll",
+        "before": 0.6501,
+        "after": 0.4733
+      }
+    },
+    "note": "Fitted with training/calibrate.py on held-back rows of data/calib.jsonl (public gold-labelled tasks): choice and yes/no minimise negative log-likelihood, score minimises the error of the expected level."
+  }
+}

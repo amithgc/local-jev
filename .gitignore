@@ -1,0 +1,29 @@
+# Secrets: never commit an API key
+secrets.txt
+.env
+
+# Local environments and caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.DS_Store
+
+# Model weights, user model cards and fine-tuned models: downloaded or produced at run time (docs/training.md)
+models/
+# Generated training/evaluation data, and the portal's projects database
+data/
+
+# Evaluation outputs. Raw responses include the hosted API's and are never published;
+# report.html is rendered from them. The headline numbers live in docs/results.md.
+evals/reports/
+evals/compare/results/
+evals/compare/report.html
+
+# Tooling
+.playwright-mcp/
+dist/
+# model weights never go in the repo
+*.safetensors
+temp/

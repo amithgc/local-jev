@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="760" viewBox="0 0 800 760" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0969da"/>
+    </marker>
+    <marker id="garrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8c959f"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="798" height="758" rx="14" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="28" y="38" font-size="18" font-weight="700" fill="#1f2328">Architecture</text>
+  <text x="140" y="38" font-size="13" fill="#59636e">one process on localhost; PyTorch underneath; the model is swappable</text>
+
+  <!-- clients -->
+  <text x="28" y="72" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">CLIENTS</text>
+  <g font-size="13" fill="#1f2328" text-anchor="middle">
+    <rect x="28" y="82" width="170" height="46" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="113" y="102" font-weight="600">typesafe-sdk</text><text x="113" y="119" font-size="10.5" fill="#59636e">TYPESAFE_BASE_URL=localhost</text>
+    <rect x="214" y="82" width="170" height="46" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="299" y="102" font-weight="600">curl / any HTTP client</text><text x="299" y="119" font-size="10.5" fill="#59636e">same JSON as Jev</text>
+    <rect x="400" y="82" width="170" height="46" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="485" y="102" font-weight="600">Browser UI</text><text x="485" y="119" font-size="10.5" fill="#59636e">projects, questions, runs</text>
+    <rect x="602" y="82" width="170" height="46" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+    <text x="687" y="102" font-weight="600">Benchmarks</text><text x="687" y="119" font-size="10.5" fill="#59636e">JevBench, evals/compare</text>
+  </g>
+  <path d="M113,128 L113,160" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M299,128 L299,160" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M485,128 L485,160" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M687,128 L687,144 L540,144 L540,160" stroke="#0969da" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+  <text x="550" y="139" font-size="10" fill="#59636e">system = model field</text>
+
+  <!-- http layer -->
+  <rect x="28" y="162" width="542" height="86" rx="10" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+  <text x="42" y="182" font-size="11" font-weight="700" fill="#0969da" letter-spacing="0.8">HTTP LAYER  ·  FastAPI  ·  api.py</text>
+  <g font-size="12" fill="#1f2328" text-anchor="middle">
+    <rect x="42" y="192" width="250" height="44" rx="6" fill="#ffffff" stroke="#0969da"/>
+    <text x="167" y="210" font-weight="600">POST /v1/systemone   GET /v1/models</text>
+    <text x="167" y="227" font-size="10.5" fill="#59636e">Jev wire format; "model" chooses the backend</text>
+    <rect x="306" y="192" width="250" height="44" rx="6" fill="#ffffff" stroke="#0969da"/>
+    <text x="431" y="210" font-weight="600">/api/*  project API   ·   /  static UI</text>
+    <text x="431" y="227" font-size="10.5" fill="#59636e">projects, questions, items, runs, export</text>
+  </g>
+
+  <rect x="602" y="162" width="170" height="86" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="687" y="186" font-size="13" font-weight="600" fill="#1f2328" text-anchor="middle">SQLite project store</text>
+  <text font-size="10.5" fill="#59636e" text-anchor="middle">
+    <tspan x="687" y="204">projects, questions, items,</tspan>
+    <tspan x="687" y="219">answers keyed by model and</tspan>
+    <tspan x="687" y="234">the hash of the question</tspan>
+  </text>
+  <path d="M570,214 L600,214" stroke="#8c959f" stroke-width="1.5" marker-end="url(#garrow)" marker-start="url(#garrow)"/>
+  <path d="M299,248 L299,278" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- engine -->
+  <rect x="28" y="280" width="542" height="98" rx="10" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
+  <text x="42" y="302" font-size="13" font-weight="600" fill="#1f2328">Engine  ·  engine.py, questions.py, primitives.py</text>
+  <text font-size="11" fill="#59636e">
+    <tspan x="42" y="322">parse_question(): every question validated once, whatever model answers it</tspan>
+    <tspan x="42" y="338">load models on demand within a memory budget; all model work, loads included, under DEVICE_LOCK</tspan>
+    <tspan x="42" y="354">calibrate(): the card's temperature, in log space; to_answer(): the Jev-shaped choice, score or noul</tspan>
+    <tspan x="42" y="370" fill="#1f2328" font-weight="600">Nothing above this line knows which model is running.</tspan>
+  </text>
+
+  <!-- cards -->
+  <rect x="602" y="280" width="170" height="196" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="687" y="304" font-size="13" font-weight="600" fill="#1f2328" text-anchor="middle">Model cards  ·  models.py</text>
+  <text x="687" y="321" font-size="10.5" fill="#59636e" text-anchor="middle">small JSON files, later wins</text>
+  <text font-family="Menlo, Consolas, monospace" font-size="9.5" fill="#1f2328">
+    <tspan x="614" y="350">1 local_jev/cards/</tspan>
+    <tspan x="614" y="365" fill="#59636e">  built-in, calibrated,</tspan>
+    <tspan x="614" y="380" fill="#59636e">  with JevBench results</tspan>
+    <tspan x="614" y="400">2 models/cards/</tspan>
+    <tspan x="614" y="415" fill="#59636e">  yours: other models,</tspan>
+    <tspan x="614" y="430" fill="#59636e">  recalibrated, fine-tuned</tspan>
+    
+  </text>
+  <text font-size="10.5" fill="#59636e" text-anchor="middle">
+    <tspan x="687" y="452">backend, priority, licence, size,</tspan>
+    <tspan x="687" y="467">calibration, evaluation, options</tspan>
+  </text>
+  <path d="M600,329 L572,329" stroke="#8c959f" stroke-width="1.5" marker-end="url(#garrow)"/>
+
+  <path d="M299,378 L299,404" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+
+  <!-- backend interface -->
+  <rect x="28" y="406" width="542" height="40" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+  <text x="42" y="431" font-size="11" font-weight="700" fill="#0969da" letter-spacing="0.8">BACKEND INTERFACE</text>
+  <text x="190" y="431" font-family="Menlo, Consolas, monospace" font-size="10.5" fill="#1f2328">score(items) -> one probability per answer</text>
+
+  <path d="M116,446 L116,474" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M299,446 L299,474" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M482,446 L482,474" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- three backends -->
+  <g text-anchor="middle">
+    <rect x="28" y="476" width="176" height="150" rx="8" fill="#ffffff" stroke="#0969da"/>
+    <text x="116" y="498" font-size="13" font-weight="600" fill="#1f2328">nli</text>
+    <text x="116" y="514" font-size="10.5" fill="#0969da">entailment cross-encoder</text>
+    <text font-size="10.5" fill="#59636e">
+      <tspan x="116" y="536">DeBERTa-v3 zero-shot, 435M</tspan>
+      <tspan x="116" y="552">each answer is a hypothesis,</tspan>
+      <tspan x="116" y="568">the state is the premise;</tspan>
+      <tspan x="116" y="584">softmax over entailment log-odds</tspan>
+      <tspan x="116" y="606" fill="#1f2328" font-weight="600">smallest; first-run model</tspan>
+    </text>
+
+    <rect x="211" y="476" width="176" height="150" rx="8" fill="#ffffff" stroke="#0969da" stroke-width="2"/>
+    <text x="299" y="498" font-size="13" font-weight="600" fill="#1f2328">llm</text>
+    <text x="299" y="514" font-size="10.5" fill="#0969da">small instruction-tuned LM</text>
+    <text font-size="10.5" fill="#59636e">
+      <tspan x="299" y="536">Qwen instruct, 1.5B to 4B</tspan>
+      <tspan x="299" y="552">state first, then lettered options</tspan>
+      <tspan x="299" y="568">(plain or JSON layout, per card);</tspan>
+      <tspan x="299" y="584">logits over A..Z, no generation</tspan>
+      <tspan x="299" y="606" fill="#1f2328" font-weight="600">default: Qwen3.5-4B, 80.5%</tspan>
+    </text>
+
+    <rect x="394" y="476" width="176" height="150" rx="8" fill="#ffffff" stroke="#0969da"/>
+    <text x="482" y="498" font-size="13" font-weight="600" fill="#1f2328">ensemble</text>
+    <text x="482" y="514" font-size="10.5" fill="#0969da">no model of its own</text>
+    <text font-size="10.5" fill="#59636e">
+      <tspan x="482" y="536">asks its member models, calibrates</tspan>
+      <tspan x="482" y="552">each with its own temperatures,</tspan>
+      <tspan x="482" y="568">pools them: a weighted geometric</tspan>
+      <tspan x="482" y="584">mean of the probabilities</tspan>
+      <tspan x="482" y="606" fill="#1f2328" font-weight="600">kept; no built-in card</tspan>
+    </text>
+  </g>
+
+  <!-- weights -->
+  <rect x="602" y="500" width="170" height="126" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="687" y="524" font-size="13" font-weight="600" fill="#1f2328" text-anchor="middle">Weights</text>
+  <text font-size="10.5" fill="#59636e" text-anchor="middle">
+    <tspan x="687" y="544">published models: the</tspan>
+    <tspan x="687" y="559">Hugging Face cache</tspan>
+    <tspan x="687" y="580">fine-tuned here: models/hf/</tspan>
+    <tspan x="687" y="601">all downloaded once, on first</tspan>
+    <tspan x="687" y="616">use, then served offline</tspan>
+  </text>
+  <path d="M600,563 L572,563" stroke="#8c959f" stroke-width="1.5" marker-end="url(#garrow)"/>
+
+  <!-- footer -->
+  <rect x="28" y="650" width="744" height="86" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="42" y="672" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">PROPERTIES THAT FALL OUT OF THE DESIGN</text>
+  <g font-size="11.5" fill="#1f2328">
+    <text x="42" y="694">Every question is scored on its own, so no question can see another's answer, on any backend.</text>
+    <text x="42" y="711">Answers are a closed set, so no model can invent an option or return malformed output.</text>
+    <text x="42" y="728">One server can serve several models at once: the request's model field chooses, per request.</text>
+  </g>
+</svg>

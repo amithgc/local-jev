@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="790" viewBox="0 0 800 790" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0969da"/>
+    </marker>
+  </defs>
+  <rect x="1" y="1" width="798" height="788" rx="14" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="28" y="38" font-size="18" font-weight="700" fill="#1f2328">One question, three backends, the same answer shape</text>
+  <text x="28" y="60" font-size="12" fill="#59636e">Each backend poses the question in the form its own model was trained on, and returns one probability per answer.</text>
+
+  <!-- the question -->
+  <rect x="28" y="78" width="744" height="92" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="42" y="100" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">THE QUESTION, PARSED ONCE  ·  questions.py</text>
+  <text font-size="11.5" fill="#1f2328">
+    <tspan x="42" y="122" font-weight="600">state</tspan><tspan x="102" y="122" fill="#59636e">"I've been trying to connect my Stripe account for 3 days ... I'm losing sales. Please help ASAP."</tspan>
+    <tspan x="42" y="140" font-weight="600">choice</tspan><tspan x="102" y="140" fill="#59636e">Which team should handle this?</tspan>
+    <tspan x="42" y="158" font-weight="600">answers</tspan><tspan x="102" y="158" fill="#59636e">billing: Payment or subscription issues  ·  technical: Bugs or integration problems  ·  sales: Pricing or account questions</tspan>
+  </text>
+  <path d="M146,170 L146,196" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M400,170 L400,196" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M654,170 L654,196" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- column 1: nli -->
+  <rect x="28" y="198" width="236" height="436" rx="10" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
+  <rect x="28" y="198" width="236" height="40" rx="10" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+  <text x="42" y="223" font-size="14" font-weight="700" fill="#0969da">nli</text>
+  <text x="250" y="223" font-size="11" fill="#0969da" text-anchor="end">DeBERTa-v3, 435M  ·  0.9 GB</text>
+  <text x="42" y="260" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">WHAT THE MODEL IS SENT</text>
+  <rect x="42" y="270" width="208" height="150" rx="6" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text font-family="Menlo, Consolas, monospace" font-size="9" fill="#1f2328">
+    <tspan x="50" y="288" fill="#59636e">premise</tspan>
+    <tspan x="50" y="302">I've been trying to connect ...</tspan>
+    <tspan x="50" y="322" fill="#59636e">hypothesis, one pair per answer</tspan>
+    <tspan x="50" y="336">Asked "Which team should handle</tspan>
+    <tspan x="50" y="350">this", the right answer for this</tspan>
+    <tspan x="50" y="364">text is "</tspan><tspan fill="#0969da" font-weight="700">billing: Payment or</tspan>
+    <tspan x="50" y="378" fill="#0969da" font-weight="700">subscription issues</tspan><tspan>".</tspan>
+    <tspan x="50" y="398" fill="#59636e">... and again for technical, sales</tspan>
+  </text>
+  <text x="42" y="444" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">WHAT IS READ BACK</text>
+  <text font-size="11" fill="#1f2328">
+    <tspan x="42" y="464">Entailment log-odds for each pair:</tspan>
+    <tspan x="42" y="484" font-family="Menlo, Consolas, monospace" font-size="10.5" fill="#0969da" font-weight="700">log P(entails) - log P(not)</tspan>
+    <tspan x="42" y="506" fill="#59636e">Softmax across the answers; for a yes/no,</tspan>
+    <tspan x="42" y="522" fill="#59636e">a sigmoid of one pair. Judging a sentence</tspan>
+    <tspan x="42" y="538" fill="#59636e">against a text is the pretrained skill.</tspan>
+  </text>
+  <text font-size="10.5" fill="#59636e">
+    <tspan x="42" y="568" fill="#1f2328" font-weight="600">Cost</tspan><tspan x="92" y="568">1 forward row per answer</tspan>
+    <tspan x="42" y="586" fill="#1f2328" font-weight="600">Window</tspan><tspan x="92" y="586">512 tokens</tspan>
+    <tspan x="42" y="604" fill="#1f2328" font-weight="600">Tuning</tspan><tspan x="92" y="604">zero-shot; train_nli.py can tune it</tspan>
+    <tspan x="42" y="622" fill="#1f2328" font-weight="600">JevBench</tspan><tspan x="102" y="622">54.1%  ·  76 ms median</tspan>
+  </text>
+
+  <!-- column 2: llm -->
+  <rect x="282" y="198" width="236" height="436" rx="10" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
+  <rect x="282" y="198" width="236" height="40" rx="10" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+  <text x="296" y="223" font-size="14" font-weight="700" fill="#0969da">llm</text>
+  <text x="504" y="223" font-size="11" fill="#0969da" text-anchor="end">Qwen, 1.5B to 4B  ·  3 to 9 GB</text>
+  <text x="296" y="260" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">WHAT THE MODEL IS SENT</text>
+  <rect x="296" y="270" width="208" height="150" rx="6" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text font-family="Menlo, Consolas, monospace" font-size="9" fill="#1f2328">
+    <tspan x="304" y="288" fill="#59636e">chat template, system + user</tspan>
+    <tspan x="304" y="302">Input: I've been trying to ...</tspan>
+    <tspan x="304" y="316">Question: Which team should ...</tspan>
+    <tspan x="304" y="330">Options:</tspan>
+    <tspan x="304" y="344" fill="#0969da" font-weight="700">A</tspan><tspan>. billing - Payment or ...</tspan>
+    <tspan x="304" y="358" fill="#0969da" font-weight="700">B</tspan><tspan>. technical - Bugs or ...</tspan>
+    <tspan x="304" y="372" fill="#0969da" font-weight="700">C</tspan><tspan>. sales - Pricing or ...</tspan>
+    <tspan x="304" y="390">Answer with one letter.</tspan>
+    <tspan x="304" y="408" fill="#59636e">assistant:</tspan>
+  </text>
+  <rect x="362" y="398" width="9" height="13" rx="2" fill="#0969da"/>
+  <text x="296" y="444" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">WHAT IS READ BACK</text>
+  <text font-size="11" fill="#1f2328">
+    <tspan x="296" y="464">Next-token logits over the letters:</tspan>
+    <tspan x="296" y="484" font-family="Menlo, Consolas, monospace" font-size="10.5" fill="#0969da" font-weight="700">A   B   C</tspan>
+    <tspan x="296" y="506" fill="#59636e">No generation, no sampling. Qwen3.5 cards</tspan>
+    <tspan x="296" y="522" fill="#59636e">send the same content as one JSON object:</tspan>
+    <tspan x="296" y="538" fill="#59636e">80.5% on JevBench, against 73.2% plain.</tspan>
+  </text>
+  <text font-size="10.5" fill="#59636e">
+    <tspan x="296" y="568" fill="#1f2328" font-weight="600">Cost</tspan><tspan x="346" y="568">1 pass; the state is shared</tspan>
+    <tspan x="296" y="586" fill="#1f2328" font-weight="600">Window</tspan><tspan x="346" y="586">32,768 tokens</tspan>
+    <tspan x="296" y="604" fill="#1f2328" font-weight="600">Tuning</tspan><tspan x="346" y="604">zero-shot; prompt layout per card</tspan>
+    <tspan x="296" y="622" fill="#1f2328" font-weight="600">JevBench</tspan><tspan x="356" y="622">58.9% to 80.5%  ·  74-651 ms</tspan>
+  </text>
+
+  <!-- column 3: ensemble -->
+  <rect x="536" y="198" width="236" height="436" rx="10" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
+  <rect x="536" y="198" width="236" height="40" rx="10" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+  <text x="550" y="223" font-size="14" font-weight="700" fill="#0969da">ensemble</text>
+  <text x="758" y="223" font-size="11" fill="#0969da" text-anchor="end">nli + llm, pooled</text>
+  <text x="550" y="260" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">WHAT IT DOES</text>
+  <rect x="550" y="270" width="208" height="150" rx="6" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text font-family="Menlo, Consolas, monospace" font-size="9" fill="#1f2328">
+    <tspan x="558" y="288" fill="#59636e">no model of its own: ask each</tspan>
+    <tspan x="558" y="302" fill="#59636e">member, calibrate with its card</tspan>
+    <tspan x="628" y="326" fill="#59636e">bill</tspan><tspan x="668" y="326" fill="#59636e">tech</tspan><tspan x="708" y="326" fill="#59636e">sales</tspan>
+    <tspan x="558" y="342">nli</tspan><tspan x="628" y="342">0.30</tspan><tspan x="668" y="342">0.62</tspan><tspan x="708" y="342">0.08</tspan>
+    <tspan x="558" y="358">llm</tspan><tspan x="628" y="358">0.10</tspan><tspan x="668" y="358">0.88</tspan><tspan x="708" y="358">0.02</tspan>
+    <tspan x="558" y="380" fill="#0969da" font-weight="700">pooled</tspan><tspan x="628" y="380" fill="#0969da" font-weight="700">0.18</tspan><tspan x="668" y="380" fill="#0969da" font-weight="700">0.78</tspan><tspan x="708" y="380" fill="#0969da" font-weight="700">0.04</tspan>
+    <tspan x="558" y="402" fill="#59636e">weighted geometric mean</tspan>
+  </text>
+  <text x="550" y="444" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">WHAT WE MEASURED</text>
+  <text font-size="11" fill="#1f2328">
+    <tspan x="550" y="464">Great on easy cases, not on hard ones.</tspan>
+    <tspan x="550" y="486" fill="#59636e">DeBERTa + Qwen3-4B scored 98% on our</tspan>
+    <tspan x="550" y="502" fill="#59636e">100 cases, 68.8% on JevBench: below</tspan>
+    <tspan x="550" y="518" fill="#59636e">Qwen3-4B alone (70.1%), and slower.</tspan>
+    <tspan x="550" y="534" fill="#59636e">Card removed; the backend remains.</tspan>
+  </text>
+  <text font-size="10.5" fill="#59636e">
+    <tspan x="550" y="568" fill="#1f2328" font-weight="600">Cost</tspan><tspan x="600" y="568">the members, one after another</tspan>
+    <tspan x="550" y="586" fill="#1f2328" font-weight="600">Window</tspan><tspan x="600" y="586">the smallest member's</tspan>
+    <tspan x="550" y="604" fill="#1f2328" font-weight="600">Tuning</tspan><tspan x="600" y="604">member weights, in the card</tspan>
+    <tspan x="550" y="622" fill="#1f2328" font-weight="600">Built-in</tspan><tspan x="600" y="622">none; write your own card</tspan>
+  </text>
+
+  <path d="M146,634 L146,664" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M400,634 L400,664" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M654,634 L654,664" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- shared output -->
+  <rect x="28" y="666" width="744" height="100" rx="10" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
+  <text x="42" y="690" font-size="13" font-weight="700" fill="#1f2328">All three return the same thing: one probability per answer, in the question's own order</text>
+  <text x="42" y="714" font-family="Menlo, Consolas, monospace" font-size="11" fill="#1f2328">Scored(probs=[billing 0.20, technical 0.75, sales 0.05], tokens, truncated)    # illustrative values</text>
+  <text font-size="11.5" fill="#59636e">
+    <tspan x="42" y="738">From here everything is shared: the engine applies the model card's temperature, primitives.py builds the Jev-shaped</tspan>
+    <tspan x="42" y="754">answer (choice, probabilities, confidence), and the API, UI, evaluation harness and comparator never know which backend ran.</tspan>
+  </text>
+</svg>

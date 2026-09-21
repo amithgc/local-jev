@@ -1,0 +1,70 @@
+{
+  "name": "llm-qwen3.5-2b",
+  "backend": "llm",
+  "priority": 70,
+  "description": "Qwen3.5-2B (text model) read at the answer token, with SemIf's JSON prompt layout. Zero-shot, no fine-tuning by this project.",
+  "release_date": "2026-09-21",
+  "license": "Apache-2.0 (Qwen/Qwen3.5-2B)",
+  "hf_model": "Qwen/Qwen3.5-2B",
+  "context_tokens": 32768,
+  "batch_size": 8,
+  "evaluation": {
+    "benchmark": "JevBench public",
+    "items": 231,
+    "accuracy": 0.6623,
+    "by_tier": {
+      "easy": 1.0,
+      "standard": 0.7778,
+      "hard": 0.4414
+    },
+    "p50_ms": 261,
+    "p95_ms": 2658,
+    "failed": 0,
+    "hardware": "Apple M4 Max",
+    "measured": "2026-09-21",
+    "reference": {
+      "jev-1.13.0": 0.866
+    }
+  },
+  "size": {
+    "params": "2B",
+    "download_gb": 4.55,
+    "memory_gb": 4.0
+  },
+  "prompt": "json",
+  "summary": "A mid-size model: 66% with about half the memory of the 4B models.",
+  "use_when": [
+    "You have 4-6 GB to spare and want better reasoning than the smallest models."
+  ],
+  "avoid_when": [
+    "Speed is the priority: llm-qwen3-4b is faster and more accurate if you have the memory."
+  ],
+  "calibration": {
+    "temperature": {
+      "choice": 1.764,
+      "score": 1.002,
+      "noul": 3.184
+    },
+    "fit": {
+      "choice": {
+        "n": 511,
+        "objective": "nll",
+        "before": 1.187,
+        "after": 1.0203
+      },
+      "score": {
+        "n": 205,
+        "objective": "level_error",
+        "before": 0.7129,
+        "after": 0.7129
+      },
+      "noul": {
+        "n": 784,
+        "objective": "nll",
+        "before": 0.7791,
+        "after": 0.5719
+      }
+    },
+    "note": "Fitted with training/calibrate.py on held-back rows of data/calib.jsonl (public gold-labelled tasks): choice and yes/no minimise negative log-likelihood, score minimises the error of the expected level."
+  }
+}

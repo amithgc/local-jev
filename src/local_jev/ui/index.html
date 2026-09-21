@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>local-jev</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111827'/%3E%3Cpath d='M9 22V10m7 12V14m7 8v-5' stroke='%234a9fe0' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand" title="local-jev">local‑jev</div>
+  <nav id="tabs" class="tabs" aria-label="Projects"></nav>
+  <button id="new-project" class="tab tab-new" title="New project">+ New project</button>
+  <div class="topbar-right"><a id="models-link" class="toplink" href="#models">Models</a><span id="engine-status" class="status-dot" title="">local · offline</span></div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <h2>Questions</h2>
+      <button id="new-question" class="btn btn-sm"><span class="plus">+</span> New</button>
+    </div>
+    <ul id="questions" class="question-list"></ul>
+    <p id="questions-empty" class="hint hidden">No questions yet. A question is one narrow judgment: a yes/no, a category, or a score.</p>
+  </aside>
+
+  <main id="main">
+    <section class="head">
+      <div>
+        <h1 id="project-name"></h1>
+        <p id="project-desc" class="muted"></p>
+      </div>
+      <div class="head-right">
+        <div id="view-toggle" class="viewseg" role="tablist" aria-label="View">
+          <button data-view="test" role="tab" title="Ask about one item and see every answer">Test one</button>
+          <button data-view="batch" role="tab" title="Run the questions over all your items">Sort many</button>
+        </div>
+        <div class="meta"><div id="item-count"></div><div id="item-updated" class="muted"></div></div>
+        <select id="limit" class="select" title="How many of the most recent items to work on"></select>
+        <button id="add-data" class="btn"><svg class="ico" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Add data</button>
+        <button id="project-settings" class="btn btn-icon" title="Project settings"><svg class="ico" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg></button>
+      </div>
+    </section>
+
+    <div id="view-test" class="test hidden">
+      <section class="card ask">
+        <label for="ask-text" class="ask-label">Try it</label>
+        <textarea id="ask-text" spellcheck="false" rows="6"></textarea>
+        <div class="ask-row">
+          <button id="ask-model" type="button" class="select mpick-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="mpick-panel" aria-label="Model"></button>
+          <button id="ask-go" class="btn btn-primary">Ask</button>
+        </div>
+        <div class="ask-tools">
+          <div class="menuwrap"><button id="ask-recent" type="button" class="btn btn-quiet btn-sm" aria-haspopup="menu" aria-expanded="false" aria-controls="recent-menu">Recent ▾</button>
+            <div id="recent-menu" class="menu" role="menu" aria-label="Recent prompts" hidden></div></div>
+          <button id="ask-sample" type="button" class="btn btn-quiet btn-sm">Use a sample</button>
+          <span class="spacer"></span>
+          <button id="ask-copy" type="button" class="btn btn-quiet btn-sm" title="The same request as a curl command or Python, for the Jev-compatible API">Copy as API call</button>
+        </div>
+        <div id="ask-error" class="error hidden"></div>
+        <p class="hint ask-hint">Every question of this project is asked at once. Nothing is saved. <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Enter</kbd> asks.</p>
+      </section>
+      <section id="answers" class="answers"></section>
+    </div>
+
+    <div id="view-batch">
+    <section class="card runbar">
+      <div class="run-msg">
+        <div id="run-title"></div>
+        <div id="run-sub" class="muted small"></div>
+        <div id="run-progress" class="progress hidden"><div></div></div>
+      </div>
+      <button id="model" type="button" class="select mpick-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="mpick-panel" aria-label="Model"></button>
+      <select id="scope" class="select">
+        <option value="unsorted">Anything not sorted yet</option>
+        <option value="all">Everything, from scratch</option>
+      </select>
+      <button id="run" class="btn btn-run"><svg class="ico" viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z"/></svg> <span>Run</span></button>
+    </section>
+
+    <section id="results" class="card grid"></section>
+
+    <section class="card items">
+      <div class="items-head">
+        <div id="filters" class="chips"></div>
+        <input id="search" class="input search" type="search" placeholder="Search…">
+        <div id="items-count" class="muted small"></div>
+        <button id="export" class="btn btn-sm"><svg class="ico" viewBox="0 0 24 24"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14"/></svg> Export</button>
+      </div>
+      <ul id="items" class="item-list"></ul>
+      <button id="more" class="btn btn-sm more hidden">Show more</button>
+    </section>
+    </div>
+  </main>
+
+  <main id="models-page" class="models-page hidden" aria-labelledby="models-title"></main>
+
+  <main id="welcome" class="welcome hidden">
+    <h1>Create your first project</h1>
+    <p class="muted">A project is a pile of text — emails, comments, tickets, transcripts — plus the questions you want answered about every item.</p>
+    <button class="btn btn-primary" onclick="document.getElementById('new-project').click()">+ New project</button>
+    <p class="muted small welcome-alt">or <a href="#models">compare the models</a> first.</p>
+  </main>
+</div>
+
+<div id="mpick-panel" class="mpick-panel" role="listbox" tabindex="-1" aria-label="Choose a model" hidden></div>
+<div id="viz-tip" class="viz-tip" role="status" hidden></div>
+<div id="modal-root"></div>
+<div id="toast" class="toast hidden"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

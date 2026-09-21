@@ -1,0 +1,67 @@
+{
+  "name": "llm-qwen2.5-1.5b",
+  "backend": "llm",
+  "priority": 60,
+  "description": "Qwen2.5-1.5B-Instruct read at the answer token. Zero-shot, no fine-tuning by this project.",
+  "release_date": "2024-09-19",
+  "license": "Apache-2.0 (Qwen/Qwen2.5-1.5B-Instruct)",
+  "hf_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "context_tokens": 32768,
+  "calibration": {
+    "temperature": {
+      "choice": 3.184,
+      "score": 2.095,
+      "noul": 5.207
+    },
+    "fit": {
+      "choice": {
+        "n": 511,
+        "nll_before": 2.064,
+        "nll_after": 1.1585
+      },
+      "score": {
+        "n": 600,
+        "objective": "level_error",
+        "before": 0.615,
+        "after": 0.6056,
+        "floored_at_1": false
+      },
+      "noul": {
+        "n": 784,
+        "nll_before": 1.1747,
+        "nll_after": 0.5831
+      }
+    },
+    "note": "Fitted with training/calibrate.py on held-back rows of data/calib.jsonl (public gold-labelled tasks): choice and yes/no minimise negative log-likelihood, score minimises the error of the expected level."
+  },
+  "evaluation": {
+    "benchmark": "JevBench public",
+    "items": 231,
+    "accuracy": 0.5887,
+    "by_tier": {
+      "easy": 1.0,
+      "standard": 0.6806,
+      "hard": 0.3514
+    },
+    "p50_ms": 74,
+    "p95_ms": 783,
+    "failed": 0,
+    "hardware": "Apple M4 Max",
+    "measured": "2026-09-21",
+    "reference": {
+      "jev-1.13.0": 0.866
+    }
+  },
+  "size": {
+    "params": "1.5B",
+    "download_gb": 3.09,
+    "memory_gb": 3.1
+  },
+  "summary": "Small and fast: 59% at about 0.07 s per request, in 3 GB.",
+  "use_when": [
+    "You need speed and have little memory, and the questions are straightforward."
+  ],
+  "avoid_when": [
+    "Hard or multi-step judgments: it answers only about a third of the hard tier correctly."
+  ]
+}

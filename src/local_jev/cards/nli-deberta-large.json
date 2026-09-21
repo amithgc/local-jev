@@ -1,0 +1,71 @@
+{
+  "name": "nli-deberta-large",
+  "backend": "nli",
+  "priority": 50,
+  "description": "DeBERTa-v3-large zero-shot entailment model (435M). Each answer becomes a hypothesis judged against the input. Zero-shot, no fine-tuning by this project.",
+  "release_date": "2024-04-01",
+  "license": "MIT (MoritzLaurer/deberta-v3-large-zeroshot-v2.0)",
+  "hf_model": "MoritzLaurer/deberta-v3-large-zeroshot-v2.0",
+  "context_tokens": 512,
+  "calibration": {
+    "temperature": {
+      "choice": 1.395,
+      "score": 1.052,
+      "noul": 4.138
+    },
+    "fit": {
+      "choice": {
+        "n": 511,
+        "nll_before": 1.1721,
+        "nll_after": 1.1385
+      },
+      "score": {
+        "n": 600,
+        "objective": "level_error",
+        "before": 0.6122,
+        "after": 0.6121,
+        "floored_at_1": false
+      },
+      "noul": {
+        "n": 784,
+        "nll_before": 1.0108,
+        "nll_after": 0.5726
+      }
+    },
+    "note": "Fitted with training/calibrate.py on held-back rows of data/calib.jsonl (public gold-labelled tasks): choice and yes/no minimise negative log-likelihood, score minimises the error of the expected level."
+  },
+  "evaluation": {
+    "benchmark": "JevBench public",
+    "items": 231,
+    "accuracy": 0.5411,
+    "by_tier": {
+      "easy": 0.9375,
+      "standard": 0.5694,
+      "hard": 0.3514
+    },
+    "p50_ms": 76,
+    "p95_ms": 710,
+    "failed": 0,
+    "hardware": "Apple M4 Max",
+    "measured": "2026-09-21",
+    "reference": {
+      "jev-1.13.0": 0.866
+    }
+  },
+  "size": {
+    "params": "435M",
+    "download_gb": 0.87,
+    "memory_gb": 0.9
+  },
+  "summary": "The smallest and fastest: under 1 GB and about 0.08 s, strong on simple questions.",
+  "use_when": [
+    "Clear-cut classification: intents, topics, spam, sentiment (94% on the easy tier).",
+    "Laptops without much memory, or the first run on a new machine (a 0.9 GB download).",
+    "Bulk jobs over many short items."
+  ],
+  "avoid_when": [
+    "Policy and rule application, or anything that needs several steps of reasoning.",
+    "Long documents: it reads only about 512 tokens, keeping the start and the end."
+  ],
+  "batch_size": 32
+}
