@@ -75,4 +75,6 @@ Until this point every model decision in this project, including the one above, 
 
 **Qwen3.5-4B became the default.** At 80.5% it is within two items of Jev (86.6%, published) on the easy and standard tiers and behind it on the hard tier (69 against 81 of 111). It is also the slowest built-in model on a Mac, because its hybrid linear-attention layers have no fast path in PyTorch's Apple-GPU backend; an MLX runtime is the obvious next step and does not exist yet.
 
+**Fine-tuning the entailment model did not transfer.** The data pipeline built for Needle went on to fine-tune the DeBERTa model on an RTX 3090 Ti (40,000 examples). It improved on nine public tasks it had never seen (73.9% to 82.5%) and barely moved on JevBench (54.1% to 55.8%, within noise), so it is not shipped ([training.md](training.md#results-so-far)).
+
 The lesson is the same one the Needle work taught in a different form: measure on a benchmark you did not write. The layout choice for each Qwen card was itself made on JevBench's public items, so the new numbers carry a mild version of the same optimism, and the benchmark's 303 held-out items have not been run.

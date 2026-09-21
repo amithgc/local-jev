@@ -7,11 +7,11 @@ Thanks for looking. local-jev is a small project with a narrow goal: a local ser
 ```sh
 uv venv --python 3.12 .venv
 uv pip install --python .venv/bin/python -e ".[dev]"
-.venv/bin/python -m pytest          # 36 tests need no model weights and download none; 3 more are skipped without a live server
-LOCAL_JEV_URL=http://127.0.0.1:8765 .venv/bin/python -m pytest     # all 39, with `local-jev serve` running
+.venv/bin/python -m pytest          # 37 tests need no model weights and download none; 3 more are skipped without a live server
+LOCAL_JEV_URL=http://127.0.0.1:8765 .venv/bin/python -m pytest     # all 40, with `local-jev serve` running
 ```
 
-`models/`, `data/`, `.venv*/` and `secrets.txt` are git-ignored. Never commit weights, generated datasets or credentials.
+`models/`, `data/`, `.venv/`, `*.safetensors` and `secrets.txt` are git-ignored. Never commit weights, generated datasets or credentials.
 
 PyTorch and `transformers` are part of the base install. Model weights download from Hugging Face the first time a model is used (0.87 GB for the entailment model, 3.09 to 9.32 GB for the LLMs). For training on an NVIDIA GPU, see [training/README-gpu.md](training/README-gpu.md).
 
@@ -53,7 +53,7 @@ A card under `src/local_jev/cards/` ships with the package, so the bar is higher
 3. **Keep the wire format exact.** The `/v1` endpoints must stay compatible with the official `typesafe-sdk`. Extra fields need a strong reason.
 4. **Measure, then claim.** Quality claims come with numbers from an independent benchmark (JevBench's public items) and, where a model was trained, from the evaluation harness on held-out tasks. The hand-written comparator cases are a regression check; they proved far too easy to rank models. Speed claims come with the hardware, device and dtype. Do not report a number for a model that has not been run.
 5. **Offline by default.** Nothing in the serving path may make a network call other than the one-time weight download, and the server must never start a multi-gigabyte download on its own.
-6. **Model code stays in the backends.** PyTorch and `transformers` are imported only under `src/local_jev/backends/` and in `training/`, lazily. The engine, API, UI, store and evaluation code must not know which backend is running.
+6. **Model code stays in the backends.** PyTorch and `transformers` are imported only under `src/local_jev/backends/` and in `training/`, lazily (plus one import check in `ModelCard.unavailable()` that reports whether they are installed). The engine, API, UI, store and evaluation code must not know which backend is running.
 
 ## Code style
 
@@ -65,4 +65,4 @@ Diagrams live in `docs/assets/` as hand-written SVG with a PNG rendered beside e
 
 ## Licence
 
-The project's licence has not been chosen yet. By contributing you agree that your contribution may be distributed under whatever open-source licence the repository owner selects.
+local-jev is released under the [MIT License](LICENSE). By contributing you agree that your contribution is licensed under it too.

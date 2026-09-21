@@ -201,7 +201,8 @@ def main():
     name = args.name or os.path.basename(args.out.rstrip("/"))
     from local_jev.models import USER_CARDS_DIR
     USER_CARDS_DIR.mkdir(parents=True, exist_ok=True)
-    card = {"name": name, "backend": "nli", "priority": 75, "hf_model": os.path.abspath(args.out), "context_tokens": 512,
+    # Priority 55: above the untuned model, below every LLM; the first run did not beat them on JevBench (docs/training.md).
+    card = {"name": name, "backend": "nli", "priority": 55, "hf_model": os.path.abspath(args.out), "context_tokens": 512, "batch_size": 32,
             "description": f"{args.base} fine-tuned by training/train_nli.py on {len(train)} examples of this project's gold-labelled data.",
             "release_date": time.strftime("%Y-%m-%d"), "license": "MIT base model (MoritzLaurer/deberta-v3-large-zeroshot-v2.0)"}
     json.dump(card, open(USER_CARDS_DIR / f"{name}.json", "w"), indent=1)

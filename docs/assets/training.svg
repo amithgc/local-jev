@@ -44,7 +44,7 @@
   <path d="M512,140 L546,140" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
   <path d="M660,198 L660,246" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <text x="28" y="236" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">2  OPTIONAL FINE-TUNE    training/train_nli.py  ·  status: no tuned model evaluated yet</text>
+  <text x="28" y="236" font-size="11" font-weight="700" fill="#59636e" letter-spacing="0.8">2  OPTIONAL FINE-TUNE    training/train_nli.py  ·  first run: 55.8% vs 54.1%, not shipped</text>
   <g text-anchor="middle">
     <rect x="548" y="248" width="224" height="116" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="1.5"/>
     <text x="660" y="270" font-size="13" font-weight="600" fill="#1f2328">The backend's own hypotheses()</text>
@@ -73,9 +73,9 @@
       <tspan x="140" y="306">models/cards/NAME.json</tspan>
     </text>
     <text font-size="10.5" fill="#59636e">
-      <tspan x="140" y="328">backend nli, priority 75: listed on the</tspan>
-      <tspan x="140" y="343">next start, ranked above the untuned</tspan>
-      <tspan x="140" y="358">entailment model (priority 50)</tspan>
+      <tspan x="140" y="328">backend nli, priority 55: listed on the</tspan>
+      <tspan x="140" y="343">next start, above the untuned model</tspan>
+      <tspan x="140" y="358">(priority 50), below every LLM</tspan>
     </text>
   </g>
   <path d="M546,306 L514,306" stroke="#0969da" stroke-width="1.5" marker-end="url(#arrow)"/>

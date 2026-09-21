@@ -8,7 +8,7 @@ A local, offline System One server. Software that needs a decision rather than p
 
 - On [JevBench](https://github.com/fstandhartinger/jevbench)'s 231 public items the default model answers **80.5%** correctly, against 86.6% published for the hosted Jev API and 81.0% for SemIf; the gap is on the hard tier. [All results](docs/results.md).
 - Local, offline after the first model download, and wire-compatible with Jev's `/v1/systemone` (checked with the unmodified official `typesafe-sdk`). An optional browser portal comes with it.
-- A research project, not a finished product. The licence has not been chosen yet ([below](#licence)).
+- A research project, not a finished product. MIT-licensed ([below](#licence)).
 
 ## Quick start
 
@@ -21,7 +21,7 @@ A local, offline System One server. Software that needs a decision rather than p
 **Install**
 
 ```sh
-git clone <this repo> local-jev && cd local-jev
+git clone https://github.com/amithgc/local-jev && cd local-jev
 uv venv --python 3.12 .venv
 uv pip install --python .venv/bin/python -e .          # add ".[dev]" for the tests and the training tools
 ```
@@ -300,7 +300,7 @@ No model in local-jev ever generates text. Each is asked the question in the for
 
 ```
 local-jev/
-├── README.md, CONTRIBUTING.md, pyproject.toml, .gitignore
+├── README.md, CONTRIBUTING.md, LICENSE, pyproject.toml, .gitignore
 ├── src/local_jev/
 │   ├── __init__.py
 │   ├── cli.py           `local-jev serve [--ui]`, `local-jev models`
@@ -349,14 +349,14 @@ Not in the repository, and git-ignored: model weights (downloaded to the Hugging
 
 ```sh
 uv pip install --python .venv/bin/python -e ".[dev]"
-.venv/bin/python -m pytest                         # 36 tests; 3 more are skipped without a live server
+.venv/bin/python -m pytest                         # 37 tests; 3 more are skipped without a live server
 ```
 
 The unit tests need no model weights and download nothing. The last three drive a running server through the unmodified official SDK:
 
 ```sh
 .venv/bin/local-jev serve --port 8765 &
-LOCAL_JEV_URL=http://127.0.0.1:8765 .venv/bin/python -m pytest      # all 39
+LOCAL_JEV_URL=http://127.0.0.1:8765 .venv/bin/python -m pytest      # all 40
 ```
 
 Diagrams in `docs/assets/` are hand-written SVG; `docs/assets/build.sh` renders the PNGs. See [CONTRIBUTING.md](CONTRIBUTING.md) for conventions, adding a backend and adding a model card.
@@ -373,7 +373,7 @@ Diagrams in `docs/assets/` are hand-written SVG; `docs/assets/build.sh` renders 
 
 ## Licence
 
-**Not chosen yet.** There is no `LICENSE` file, so no licence is granted for the code until the repository owner adds one.
+The code is released under the **MIT License**; see [LICENSE](LICENSE).
 
 Model weights are not part of this repository. local-jev downloads them from Hugging Face on first use, and each comes under its own licence, stated in its model card:
 

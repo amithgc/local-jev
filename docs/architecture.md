@@ -92,7 +92,7 @@ Backends must raise `ContextOverflow` when an item does not fit and `truncate` i
 | Context window | 512 tokens | 32,768 tokens (`context_tokens` in the card) | the smallest member's |
 | Download on first use | 0.87 GB | 3.09 GB (Qwen2.5-1.5B) to 9.32 GB (Qwen3.5-4B) | its members |
 | JevBench public items (231) | 54.1% | 58.9% to 80.5% | the former built-in pairing: 68.8% |
-| Fine-tuned by this project | optional: `training/train_nli.py` (no tuned model has been evaluated yet) | no, used zero-shot | no |
+| Fine-tuned by this project | optional: `training/train_nli.py` (one run evaluated: 55.8% on JevBench against 54.1% untuned; not shipped) | no, used zero-shot | no |
 | Calibrated by this project | yes, temperatures ship in the card | yes | pools its members' calibrated probabilities |
 | Licence of the built-in models | MIT (MoritzLaurer/deberta-v3-large-zeroshot-v2.0) | Apache-2.0 (Qwen) | no built-in card |
 
@@ -312,7 +312,7 @@ An abridged built-in card:
 | `summary`, `use_when`, `avoid_when` | the UI | plain-language guidance shown on the Models page and in the model picker |
 | everything else | the backend, as options | `hf_model`, `context_tokens`, `batch_size`, `device` for `nli` and `llm`; `prompt`, `dtype` and `share_prefix` for `llm`; `members` and `weights` for `ensemble` |
 
-Pointing a new card at a different Hugging Face repository, or at a local model directory, is all it takes to try another entailment model or another instruct model. `ModelCard.unavailable()` returns the reason a model cannot be loaded right now, or `None`; the CLI, `GET /api/models` and the UI all show it. `on_disk()` reports whether a model's weights are already in the local cache (for an ensemble, whether all its members' are).
+Pointing a new card at a different Hugging Face repository, or at a local model directory, is all it takes to try another entailment model or another instruct model. `ModelCard.unavailable()` returns the reason a model cannot be loaded right now, or `None`; the CLI, `GET /api/meta` and the UI all show it. `on_disk()` reports whether a model's weights are already in the local cache (for an ensemble, whether all its members' are).
 
 ### Choosing a model
 
@@ -329,10 +329,11 @@ With none of these, `default_model()` picks the highest-`priority` model **whose
 |---|---|---|
 | `llm-qwen3.5-4b` | 95 | 80.5% |
 | `llm-qwen3-4b` | 80 | 70.1% |
-| fine-tuned models written by `train_nli.py` | 75 | not yet measured |
 | `llm-qwen3.5-2b` | 70 | 66.2% |
 | `llm-qwen2.5-1.5b` | 60 | 58.9% |
 | `nli-deberta-large` | 50 | 54.1% |
+
+A fine-tuned entailment model written by `train_nli.py` gets priority 55, above only the untuned one: the first run measured 55.8% on JevBench ([training.md](training.md#results-so-far)).
 
 The aliases `jev-latest`, `jev-preview` and `local-jev-latest` all mean the default, so clients written for Jev work without changing their `model` field. `local-jev models` prints every card with its backend, priority and status.
 
@@ -394,11 +395,11 @@ The **spec hash** covers only what affects the model's output: type, instruction
 
 **Results** are aggregated per question: yes/no counts at the current threshold, counts per option, counts per nearest level plus the average score. Clicking a row filters the item list; filters combine. **Export** writes the currently filtered items with their answers as CSV. **Try it** runs a draft question over six evenly spaced items and saves nothing, so wording can be tuned before a full run.
 
-**Two views.** A project opens in *Test one*: a single textarea on the left and one card per question on the right. Ask posts the text to `POST /api/projects/{id}/ask` (`{"state", "model", "question_ids"}`), which runs every question of the project, ticked or not, against that one state through the same `Engine.answer_many` path as a batch run, with truncation to the project's token setting, and returns the Jev-shaped answers plus their buckets, latency and token count. Nothing is written. Text that parses as a JSON object or array is sent as structure, so a pasted `{"subject": ..., "body": ...}` is judged as fields. Each card records the question's spec hash at the time of the ask: rewording a question blanks only that card until the next ask, while renaming it or moving its threshold keeps the answer (the yes/no verdict is recomputed in the browser). *Sort many* is the batch view described above; the choice is remembered per project.
+**Two views.** A project opens in *Test one*: a single textarea on the left and, on the right, one list with a row per question: the question, the verdict and its probabilities. Ask posts the text to `POST /api/projects/{id}/ask` (`{"state", "model", "question_ids"}`), which runs every question of the project, ticked or not, against that one state through the same `Engine.answer_many` path as a batch run, with truncation to the project's token setting, and returns the Jev-shaped answers plus their buckets, latency and token count. Nothing is written. Text that parses as a JSON object or array is sent as structure, so a pasted `{"subject": ..., "body": ...}` is judged as fields. Each row records the question's spec hash at the time of the ask: rewording a question blanks only that row until the next ask, while renaming it or moving its threshold keeps the answer (the yes/no verdict is recomputed in the browser). *Sort many* is the batch view described above; the choice is remembered per project.
 
 **Import** accepts CSV/TSV (each row becomes an object; a one-column file becomes strings), JSON, JSONL, plain text (split by line or by paragraph), `.eml` and `.mbox`. Files are read in the browser and posted as text; nothing leaves the machine.
 
-**Models.** The run bar has a model picker fed by `GET /api/models`: each entry shows the model's backend, its JevBench accuracy and median latency from the card, and models that cannot be loaded are disabled with the reason. A **Models page** (`/#models`) is the guide to choosing: an accuracy-against-speed scatter plot, accuracy by tier, and a card per model with its `summary`, `use_when` and `avoid_when` guidance and a *Use this model* button. Screenshots are in the [README](../README.md#the-ui). Answers are stored per (item, question, model), so running the same project under two backends keeps both sets of results and switching the dropdown switches the view.
+**Models.** Both views share a model picker fed by `GET /api/meta`: each entry shows the model's JevBench accuracy and median latency from the card, and models that cannot be loaded are disabled with the reason. A **Models page** (`/#models`) is the guide to choosing: an accuracy-against-speed scatter plot, accuracy by tier, and a card per model with its `summary`, `use_when` and `avoid_when` guidance and a *Use this model* button. Screenshots are in the [README](../README.md#the-ui). Answers are stored per (item, question, model), so running the same project under two backends keeps both sets of results and switching the dropdown switches the view.
 
 A sample project, *Processing email*, is seeded on first start with a small set of synthetic emails and seven questions (invoice or receipt, brand deal, scam or phishing, email type, needs a reply, urgency, sponsor fit).
 

@@ -15,7 +15,7 @@ None of these projects, nor local-jev, is affiliated with TypeSafe.
 | [DiffusionGemma structured mode](https://github.com/vllm-project/vllm/pull/57250), served by [razorback16/openjev](https://github.com/razorback16/openjev) | DiffusionGemma 26B-A4B | one "read-only" denoising step over a seeded canvas; logprobs at each answer slot | no | the openjev server implements it | Apache-2.0 (openjev) |
 | [NanoJev](https://github.com/TianyuCodings/NanoJev) | Qwen3-0.6B + decision heads | shared scoring head over candidate paths; set attention for Choice | yes: expert gameplay in four games | no (`/api/evaluate`) | MIT |
 | [Laya](https://github.com/NandhaKishorM/laya) | ModernBERT-large 421M; mmBERT-base 322M | encoder with typed decision heads, one forward pass | yes: RL against proper scoring rules (RLCD) | no (Python SDK) | Apache-2.0 |
-| **local-jev** (this project) | Qwen3.5-4B (default), Qwen3-4B-Instruct, Qwen3.5-2B, Qwen2.5-1.5B-Instruct, all zero-shot; DeBERTa-v3-large 435M zero-shot | logits over lettered options (plain or JSON layout, per model); entailment log-odds per answer | no (a fine-tuning run of the entailment model is in progress, no results) | yes; verified with the unmodified official SDK | see repository |
+| **local-jev** (this project) | Qwen3.5-4B (default), Qwen3-4B-Instruct, Qwen3.5-2B, Qwen2.5-1.5B-Instruct, all zero-shot; DeBERTa-v3-large 435M zero-shot | logits over lettered options (plain or JSON layout, per model); entailment log-odds per answer | no (one fine-tune of the entailment model was evaluated and not shipped) | yes; verified with the unmodified official SDK | MIT |
 
 ## The projects
 
@@ -65,7 +65,7 @@ A 0.6B Qwen3 backbone with decision heads (sigmoid for booleans, a set-attention
 
 An encoder-based system (ModernBERT-large 421M for English, mmBERT-base 322M for 100+ languages, plus a fine-tuned checkpoint) with typed decision heads, trained with reinforcement learning against strictly proper scoring rules, and a router that picks a checkpoint per request by script and language. It fits one temperature per question type and option count, ships workflow presets (routing, guardrails, moderation, triage) and a fine-tuning notebook, and reports 33 ms per question on a T4. It documents limits including a per-question option-token budget that makes large option sets (for example 77 intents) hard.
 
-**How local-jev differs:** local-jev supports up to 255 options and structured state through its backends, is English-first, and does not yet fine-tune; Laya is multilingual and trained.
+**How local-jev differs:** local-jev supports up to 255 options and structured state through its backends, is English-first, and ships no trained model (its one entailment fine-tune did not improve on JevBench); Laya is multilingual and trained.
 
 ## Where local-jev sits
 

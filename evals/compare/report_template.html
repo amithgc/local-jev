@@ -6,11 +6,11 @@
 <title>System One comparison</title>
 <style>
 :root { color-scheme: light; --bg:#f6f6f4; --surface:#fcfcfb; --line:#e4e3de; --text:#0b0b0b; --text2:#52514e; --muted:#8a8984; --track:#ecebe6; --chip:#f0efea;
-        --good:#0ca30c; --critical:#d03b3b; --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; }
+        --good:#0ca30c; --critical:#d03b3b; --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; --s7:#8e5bd9; --s8:#b0612a; }
 @media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) { color-scheme: dark; --bg:#111110; --surface:#1a1a19; --line:#2e2e2b; --text:#fff;
-        --text2:#c3c2b7; --muted:#8f8e86; --track:#2a2a27; --chip:#262623; --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; } }
+        --text2:#c3c2b7; --muted:#8f8e86; --track:#2a2a27; --chip:#262623; --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9d6fe6; --s8:#c0703a; } }
 :root[data-theme="dark"] { color-scheme: dark; --bg:#111110; --surface:#1a1a19; --line:#2e2e2b; --text:#fff; --text2:#c3c2b7; --muted:#8f8e86; --track:#2a2a27;
-        --chip:#262623; --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; }
+        --chip:#262623; --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9d6fe6; --s8:#c0703a; }
 * { box-sizing: border-box; }
 body { margin:0; background:var(--bg); color:var(--text); font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
 main { max-width:1240px; margin:0 auto; padding:28px 16px 80px; }
@@ -84,7 +84,7 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<"
 const pct = (x) => x == null ? "–" : Math.round(x * 100) + "%";
 const TYPE = { choice: "Category", noul: "Yes / No", score: "Score" };
 const SYS = D.systems, S = D.summary;
-SYS.forEach((s, i) => { s.color = `var(--s${Math.min(i + 1, 6)})`; });      // colour follows the system, in fixed order
+SYS.forEach((s, i) => { s.color = `var(--s${Math.min(i + 1, 8)})`; });      // colour follows the system, in fixed order; 8 distinct
 const sw = (s) => `<i class="sw" style="background:${s.color}"></i>`;
 
 $("#lede").textContent = `${D.rows.length} hand-written test cases across ${Object.keys(D.breakdown.domain).length} domains, each with a known correct answer, ` +

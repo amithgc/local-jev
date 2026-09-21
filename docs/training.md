@@ -94,11 +94,11 @@ Every example is stored in Jev's wire format, `{"state", "question", "gold", "ta
 
 `training/train_nli.py`
 
-**Status: a first full run is in progress on an RTX 3090 Ti (3,399 steps). No fine-tuned entailment model has been evaluated yet, and there are no results for one.** Everything below describes the design and how a result should be judged, not an outcome.
+**Status: one full run has been evaluated ([results](#results-so-far)).** It generalised to held-out public tasks (73.9% to 82.5%) but not to JevBench (54.1% to 55.8%, within noise), so it is not shipped. The design below is unchanged.
 
 ### Why try, and why be careful
 
-The untuned entailment model is the smallest and fastest model here (0.87 GB, 76 ms median on JevBench), and the weakest judge: 54.1% on JevBench's public items, against 58.9% to 80.5% for the built-in LLMs. It does well on clear-cut classification (45 of 48 easy items) and poorly on policy application and multi-step judgments (41 of 72 standard, 39 of 111 hard). On this project's public validation rows it measures roughly 0.73 to 0.74 on choices, 0.75 to 0.76 on yes/no and 0.33 to 0.46 on scores (small samples).
+The untuned entailment model is the smallest and fastest model here (0.87 GB, 76 ms median on JevBench), and the weakest judge: 54.1% on JevBench's public items, against 58.9% to 80.5% for the built-in LLMs. It does well on clear-cut classification (45 of 48 easy items) and poorly on policy application and multi-step judgments (41 of 72 standard, 39 of 111 hard). On this project's public validation rows it measures roughly 0.72 to 0.74 on choices, 0.70 to 0.76 on yes/no and 0.33 to 0.50 on scores (samples of 200 to 1,200 rows).
 
 A fine-tune could make the small, fast option more useful. Expectations should be modest: another team's DeBERTa fine-tune scores 52.4% on the same JevBench items, slightly below this untuned model.
 
@@ -117,7 +117,7 @@ The risk is that full fine-tuning erodes the zero-shot generality the model does
   For scores, rivals are not sampled uniformly: **neighbouring levels are preferred**, because telling level 3 from level 4 is the distinction that is hard and the one that matters.
 - **Gentle defaults.** Learning rate 5e-6, one pass over 40,000 examples (`--examples`, `--epochs 1`), AdamW with weight decay 0.01, 5% warm-up then cosine decay, gradient clipping at 1.0, sequences capped at 384 tokens, about 32 (premise, hypothesis) pairs per step (`--pair-budget`; lower it if memory runs out). On CUDA it trains under bf16 autocast; otherwise it uses Apple MPS or the CPU.
 - **Validation split by primitive.** Every `--eval-every` steps, and once before the first step for the untuned baseline, it reports loss and accuracy on held-back rows separately for choice, score and yes/no. An aggregate number mixes two-way and many-way questions and can hide a primitive that is getting worse.
-- **What it writes.** A Hugging Face model directory under `models/hf/<name>/`, saved at every evaluation point so a run can be stopped early, and a card at `models/cards/<name>.json` with `backend: "nli"`, `priority: 75` and `hf_model` pointing at that directory. The server lists the model on its next start. Priority 75 ranks it above the untuned entailment model (50) and `llm-qwen3.5-2b` (70), and below the two 4B LLMs, so it becomes the default only on a machine that has not fetched those.
+- **What it writes.** A Hugging Face model directory under `models/hf/<name>/`, saved at every evaluation point so a run can be stopped early, and a card at `models/cards/<name>.json` with `backend: "nli"`, `priority: 55`, `batch_size: 32` and `hf_model` pointing at that directory. The server lists the model on its next start. Priority 55 ranks it above the untuned entailment model (50) and below every LLM, because the first run did not beat them; raise it by hand if your run does.
 
 For NVIDIA hardware, see [training/README-gpu.md](../training/README-gpu.md).
 
@@ -264,4 +264,4 @@ Data generation is seeded, so the same command produces the same examples. `buil
 
 ## Where the numbers are
 
-All measured results, with reproduction commands and caveats, are in **[results.md](results.md)**: JevBench for every built-in model, the hand-written comparator, the prompt-layout experiment and performance. Fine-tuning results will appear [above](#results-so-far) once there are any. The two fine-tuned models the project built and then retired are in [history.md](history.md#what-two-fine-tuned-adapters-achieved).
+All measured results, with reproduction commands and caveats, are in **[results.md](results.md)**: JevBench for every built-in model, the hand-written comparator, the prompt-layout experiment and performance. Fine-tuning results are [above](#results-so-far). The two fine-tuned models the project built and then retired are in [history.md](history.md#what-two-fine-tuned-adapters-achieved).

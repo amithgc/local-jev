@@ -2,7 +2,7 @@
 
 `training/train_nli.py` fine-tunes the `nli` backend's model (DeBERTa-v3-large zero-shot, 435M) on this project's gold-labelled data. It is ordinary PyTorch, so it needs none of the JAX/XLA memory settings an earlier version of this guide described.
 
-**Status: not yet shown to help; no fine-tuned model has been evaluated.** The untuned model scores 54.1% on JevBench's public items ([results](../docs/results.md)), strong on clear-cut classification and weak on hard questions. Full fine-tuning can *erode* the zero-shot generality it does have, so treat a run as an experiment: judge the result on the held-out tasks and on JevBench before using it (step 4).
+**Status: the first run did not help on JevBench.** It lifted nine held-out public tasks from 73.9% to 82.5%, but JevBench's public items only from 54.1% to 55.8%, within noise ([results](../docs/training.md#results-so-far)). The untuned model is strong on clear-cut classification and weak on hard questions. Full fine-tuning can *erode* the zero-shot generality it does have, so treat a run as an experiment: judge the result on the held-out tasks and on JevBench before using it (step 4).
 
 Requirements: Linux or WSL2, a CUDA 12 driver, Python 3.10+, [uv](https://docs.astral.sh/uv/). A 24 GB card is comfortable; 12 GB should work with a smaller `--pair-budget`.
 
@@ -15,7 +15,7 @@ Requirements: Linux or WSL2, a CUDA 12 driver, Python 3.10+, [uv](https://docs.a
 ## 1. Set up
 
 ```sh
-git clone <this repo> ~/local-jev && cd ~/local-jev
+git clone https://github.com/amithgc/local-jev ~/local-jev && cd ~/local-jev
 uv venv --python 3.12 .venv
 uv pip install --python .venv/bin/python -e ".[dev]"          # dev: the dataset tools build_data.py needs
 .venv/bin/python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"    # expect: True NVIDIA GeForce RTX 3090 Ti
@@ -39,7 +39,7 @@ If you still have `data/train.jsonl` from an earlier build, reuse it: the format
 rm -f models/cards/nli-smoke.json
 ```
 
-Look for `device: cuda`, a loss that is a number (not `nan`) and falls, and a step time well under a second.
+Look for `device: cuda`, a loss that is a number (not `nan`) and falls, and a step time of a few seconds at most (the full run took about 4 s per step on an RTX 3090 Ti, 3,399 steps in about 4 hours).
 
 ```sh
 nohup .venv/bin/python training/train_nli.py --out models/hf/nli-deberta-large-ft1 \
@@ -61,4 +61,4 @@ Copy `models/hf/nli-deberta-large-ft1/` (about 1.7 GB) and `models/cards/nli-deb
 .venv/bin/python evals/run_eval.py --model nli-deberta-large-ft1 --n 100      # after
 ```
 
-Keep it only if it beats the untuned model on JevBench **and** on the held-out tasks. The card gives it priority 75: above the untuned entailment model (50) and `llm-qwen3.5-2b` (70), below the two 4B LLMs. It becomes the server's default only on a machine that has not fetched those; delete the card to undo that.
+Keep it only if it beats the untuned model on JevBench **and** on the held-out tasks. The card gives it priority 55: above the untuned entailment model (50) and below every LLM, so it becomes the server's default only on a machine that has fetched no LLM; delete the card to undo that.
